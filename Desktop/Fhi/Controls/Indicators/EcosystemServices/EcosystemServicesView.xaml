@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="Fhi.Controls.Indicators.EcosystemServices.EcosystemServicesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Fhi.Controls.Indicators.EcosystemServices"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:utils="clr-namespace:Fhi.Controls.Utils"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:EcosystemServicesViewModel}"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <utils:IndicatorColorConverter x:Key="IndicatorColorConverter" />
+        <DataTemplate DataType="{x:Type local:EcosystemServicesSummaryViewModel}">
+            <local:EcosystemServicesSummaryView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:CulturalSummaryViewModel}">
+            <local:CulturalSummaryView />
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Button Command="{Binding BackCommand}"
+                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                Height="25"
+                Width="25"
+                Margin="5"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left">
+            <materialDesign:PackIcon Kind="ArrowLeft" />
+        </Button>
+        <Grid Grid.Row="0"
+              HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Ecosystem Services"
+                       Margin="5"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Grid.Row="0"
+                       HorizontalAlignment="Center" />
+            <TextBlock Text="{Binding Pillar.Value}"
+                       FontSize="40"
+                       FontWeight="Bold"
+                       Grid.Row="1"
+                       Foreground="{Binding Pillar.Value, Converter={StaticResource IndicatorColorConverter}}"
+                       Margin="0,-12,0,10"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <utils:SubIndicatorView Grid.Column="0"
+                                    HorizontalAlignment="Center"
+                                    Command="{Binding ProvisioningCommand}"
+                                    IndicatorName="Provisioning"
+                                    Indicator="{Binding Provisioning}"
+                                    Selected="{Binding ProvisioningSelected}"
+                                    ContextHelp="Ecosystem_Services/Provisioning_and_Regulating/Background.html"/>
+            <utils:SubIndicatorView Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    Command="{Binding RegulationCommand}"
+                                    IndicatorName="Regulation &amp;&#x0a;Support"
+                                    Indicator="{Binding Regulation}"
+                                    Selected="{Binding RegulationSelected}"
+                                    ContextHelp="Ecosystem_Services/Provisioning_and_Regulating/Background.html" />
+            <utils:SubIndicatorView Grid.Column="2"
+                                    HorizontalAlignment="Center"
+                                    Command="{Binding CulturalCommand}"
+                                    IndicatorName="Cultural"
+                                    Indicator="{Binding Cultural}"
+                                    Selected="{Binding CulturalSelected}"
+                                    ContextHelp="Ecosystem_Services/Cultural_Services/Overview.html" />
+        </Grid>
+        <Separator Grid.Row="2"
+                   BorderBrush="DarkGray" />
+        <ContentControl Grid.Row="3"
+                        Content="{Binding SelectedViewModel}" />
+    </Grid>
+</UserControl>

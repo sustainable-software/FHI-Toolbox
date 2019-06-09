@@ -1,0 +1,127 @@
+﻿<UserControl x:Class="Fhi.Controls.Indicators.Core.WeightEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Fhi.Controls.Indicators.Core"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:utils="clr-namespace:Fhi.Controls.Utils"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:WeightEditorViewModel}"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type local:WeightValueViewModel}">
+            <local:WeightView />
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock TextWrapping="Wrap"
+                       Margin="10"
+                       Grid.Column="0">
+                <Run>
+                    The relative weighting of the indicators, used for computing the next higher level
+                    indicator, can be modified here. The default is that all indicators are evenly weighed.
+                </Run>
+                <utils:ContextHelp Url="Weighting_Indicators.html" />
+            </TextBlock>
+            <Button HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Grid.Column="1"
+                    Margin="5"
+                    ToolTip="Import weights from CSV file."
+                    Command="{Binding ImportCommand}"
+                    Foreground="Black"
+                    Padding="0"
+                    Style="{DynamicResource MaterialDesignFlatButton}">
+                <materialDesign:PackIcon Kind="Import"
+                                         Width="25"
+                                         Height="25"
+                                         VerticalAlignment="Center" />
+            </Button>
+        </Grid>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="5">
+                
+                <StackPanel Margin="5">
+                    <TextBlock Text="Ecosystem Services"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center" />
+                    <StackPanel Margin="10,5">
+                        <local:WeightView DataContext="{Binding Provisioning}" />
+                        <ListView ItemsSource="{Binding ProvisioningMajor.Weights}"
+                                  Margin="200,5"
+                                  materialDesign:RippleAssist.IsDisabled="True"/>
+                    </StackPanel>
+                    <StackPanel Margin="10,5">
+                        <local:WeightView DataContext="{Binding Cultural}" />
+                        <ListView ItemsSource="{Binding CulturalMajor.Weights}"
+                                  Margin="200,5"
+                                  materialDesign:RippleAssist.IsDisabled="True" />
+                    </StackPanel>
+                    <StackPanel Margin="10,5">
+                        <local:WeightView DataContext="{Binding Regulation}" />
+                        <ListView ItemsSource="{Binding RegulationMajor.Weights}"
+                                  Margin="200,5"
+                                  materialDesign:RippleAssist.IsDisabled="True" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <TextBlock Text="Governance"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center" />
+                    <StackPanel Margin="10,5">
+                        <local:WeightView DataContext="{Binding Effectiveness}" />
+                        <ListView ItemsSource="{Binding EffectivenessMajor.Weights}"
+                                  Margin="200,5"
+                                  materialDesign:RippleAssist.IsDisabled="True" />
+                    </StackPanel>
+                    <StackPanel Margin="10,5">
+                        <local:WeightView DataContext="{Binding Engagement}" />
+                        <ListView ItemsSource="{Binding EngagementMajor.Weights}"
+                                  Margin="200,5"
+                                  materialDesign:RippleAssist.IsDisabled="True" />
+                    </StackPanel>
+                    <StackPanel Margin="10,5">
+                        <local:WeightView DataContext="{Binding Vision}" />
+                        <ListView ItemsSource="{Binding VisionMajor.Weights}"
+                                  Margin="200,5"
+                                  materialDesign:RippleAssist.IsDisabled="True" />
+                    </StackPanel>
+                    <StackPanel Margin="10,5">
+                        <local:WeightView DataContext="{Binding Environment}" />
+                        <ListView ItemsSource="{Binding EnvironmentMajor.Weights}"
+                                  Margin="200,5"
+                                  materialDesign:RippleAssist.IsDisabled="True" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button Content="Reset"
+                    Width="100"
+                    Command="{Binding ResetCommand}"
+                    Margin="5"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+            <Button Content="Ok"
+                    Width="100"
+                    Margin="5"
+                    Command="{Binding CommitCommand}"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

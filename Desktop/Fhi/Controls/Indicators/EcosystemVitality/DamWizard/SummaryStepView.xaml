@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Fhi.Controls.Indicators.EcosystemVitality.DamWizard.SummaryStepView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Fhi.Controls.Indicators.EcosystemVitality.DamWizard"
+             xmlns:network="clr-namespace:Fhi.Controls.Network"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:SummaryStepViewModel}"
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <TextBlock Margin="5"
+                       TextWrapping="Wrap">
+                <Run Text="You have imported your river network. The average length of a reach is" />
+                <Run Text="{Binding AverageLength, Mode=OneWay, StringFormat=N1}" /><Run Text="m the maximum is" />
+                <Run Text="{Binding MaximumLength, Mode=OneWay, StringFormat=N1}" />
+                <Run Text="m and the minimum is" />
+                <Run Text="{Binding MinimumLength, Mode=OneWay, StringFormat=N1}" /><Run Text="m, with" />
+                <Run Text="{Binding ReachCount, Mode=OneWay}" />
+                <Run Text="total reaches." />
+                <LineBreak />
+                <Run Text="There are" />
+                <Run Text="{Binding DamCount, Mode=OneWay}" />
+                <Run Text="dams in this river network." /></TextBlock>
+        </StackPanel>
+        <network:BasinMapView Grid.Column="1"
+                              DataContext="{Binding BasinMapViewModel}" />
+    </Grid>
+</UserControl>

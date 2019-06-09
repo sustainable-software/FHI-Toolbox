@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="Fhi.Controls.Indicators.EcosystemVitality.DamWizard.Step1View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Fhi.Controls.Indicators.EcosystemVitality.DamWizard"
+             xmlns:mvvm="clr-namespace:Fhi.Controls.MVVM"
+             xmlns:dendreticConnectivity="clr-namespace:FhiModel.EcosystemVitality.DendreticConnectivity;assembly=FhiModel"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:Step1ViewModel}"
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+    <UserControl.Resources>
+        <mvvm:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Import data containing information about dams in the river network."
+                       HorizontalAlignment="Center" />
+            <TextBlock Text="Choose File Type:"
+                       Margin="5" />
+            <StackPanel Orientation="Horizontal">
+                <RadioButton Content="Shapefile"
+                             Margin="5"
+                             GroupName="Import"
+                             IsChecked="{Binding Shapefile}" />
+                <RadioButton GroupName="Import"
+                             Margin="5"
+                             Content="CSV" />
+            </StackPanel>
+            <StackPanel Visibility="{Binding Shapefile, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Button Content="Import Dam Shapefile..."
+                        Command="{Binding ImportShapefileCommand}"
+                        HorizontalAlignment="Left"
+                        Margin="5" />
+            </StackPanel>
+            <StackPanel Visibility="{Binding Shapefile, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}">
+                <TextBlock Text="Enter the WKID (Well Known ID) which is the GIS projection information that will be used for the import. It is an integer, usually 4 or 5 digits that can be often be discovered on Google. Once you have entered the WKID, you will be able to click on the button."
+                           TextWrapping="Wrap"
+                           Margin="5" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="WKID:"
+                               Margin="5"
+                               VerticalAlignment="Center" />
+                    <TextBox Text="{Binding Wkid, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="5"
+                             Width="75" />
+                </StackPanel>
+                <Button Width="250"
+                        Content="Import Dam CSV..."
+                        Command="{Binding ImportCsvCommand}"
+                        IsEnabled="{Binding WkidSet}"
+                        Margin="5"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+            </StackPanel>
+            <ProgressBar Value="{Binding Progress}"
+                         Margin="5"
+                         Visibility="{Binding ImportInProgress, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </StackPanel>
+        <Grid Grid.Row="1"
+              Visibility="{Binding ImportComplete, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <TextBlock Margin="5">
+                    <Run Text="Imported file:" />
+                    <Run Text="{Binding Filename}" />
+                    <LineBreak />
+                    <LineBreak />
+                    <Run Text="Number of dams we were unable to locate:" />
+                    <Run Text="{Binding RemainingDams.Count, Mode=OneWay}" /></TextBlock>
+            </StackPanel>
+            <ListView ItemsSource="{Binding RemainingDams}"
+                      Margin="5"
+                      Grid.Row="1">
+                <ListView.ItemTemplate>
+                    <DataTemplate DataType="{x:Type dendreticConnectivity:DamTableRow}">
+                        <TextBlock>
+                            <Run Text="Name:" />
+                            <Run Text="{Binding Name}" />
+                            <LineBreak />
+                            <Run Text="Latitude:" />
+                            <Run Text="{Binding Location.Latitude}" />
+                            <Run Text="Longitude:" />
+                            <Run Text="{Binding Location.Longitude}" /></TextBlock>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</UserControl>

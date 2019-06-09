@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="Fhi.Controls.Infrastructure.InfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Fhi.Controls.Infrastructure"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:InfoViewModel}"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Info"
+                   FontSize="30"
+                   Margin="20"/>
+        <StackPanel Margin="20,10"
+                    Grid.Row="1">
+            <materialDesign:Card FontSize="16"
+                                 Margin="10">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Title"
+                                   Margin="5"
+                                   Width="150"
+                                   VerticalAlignment="Center" />
+                        <TextBox Text="{Binding Model.Attributes.Title}"
+                                 Margin="5"
+                                 Width="200"
+                                 VerticalContentAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Author"
+                                   Margin="5"
+                                   Width="150"
+                                   VerticalAlignment="Center" />
+                        <TextBox Text="{Binding Model.Attributes.Author}"
+                                 Margin="5"
+                                 Width="200"
+                                 VerticalContentAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Assessment Year"
+                                   Margin="5"
+                                   Width="150"
+                                   VerticalAlignment="Center" />
+                        <TextBox Text="{Binding Model.Attributes.AssessmentYear}"
+                                 Margin="5"
+                                 Width="200"
+                                 VerticalContentAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:Card>
+            <materialDesign:Card FontSize="16"
+                                 Margin="10">
+                <StackPanel>
+                    <TextBlock Text="Notes:" />
+                    <TextBox Text="{Binding Model.Attributes.Notes}"
+                             Margin="5"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             AcceptsTab="True" />
+                </StackPanel>
+            </materialDesign:Card>
+        </StackPanel>
+        <TextBlock HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
+                   Margin="5"
+                   FontSize="10"
+                   FontStyle="Italic"
+                   Grid.Row="1">
+            <Run Text="Last modified:" />
+            <Run Text="{Binding Model.Attributes.Modified}" /></TextBlock>
+        
+    </Grid>
+</UserControl>

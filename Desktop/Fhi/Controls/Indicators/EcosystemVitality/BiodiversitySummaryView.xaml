@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="Fhi.Controls.Indicators.EcosystemVitality.BiodiversitySummaryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Fhi.Controls.Indicators.EcosystemVitality"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:utils="clr-namespace:Fhi.Controls.Utils"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:BiodiversitySummaryViewModel}"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <utils:IndicatorColorConverter x:Key="IndicatorColorConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Biodiversity"
+                   HorizontalAlignment="Center"
+                   Margin="10"
+                   FontSize="14"
+                   Grid.Row="0" />
+        <WrapPanel Grid.Row="1"
+                   Orientation="Horizontal"
+                   HorizontalAlignment="Center">
+            <utils:LeafIndicator EditCommand="{Binding EditSpeciesOfConcernCommand}"
+                                 Indicator="{Binding SpeciesOfConcern}"
+                                 IndicatorName="Species of Concern"
+                                 ContextHelp="Ecosystem_Viltality/Biodiversity_(BIO)/Biodiversity_(BIO).html"
+                                 Margin="5" />
+            <utils:LeafIndicator EditCommand="{Binding EditInvasiveSpeciesCommand}"
+                                 Indicator="{Binding InvasiveSpecies}"
+                                 IndicatorName="Invasive Species"
+                                 ContextHelp="Ecosystem_Viltality/Biodiversity_(BIO)/Biodiversity_(BIO).html"
+                                 Margin="5" />
+            <!--
+            <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}">
+                <materialDesign:Flipper.FrontContent>
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                            Command="{Binding EditSpeciesOfConcernCommand}"
+                            Margin="5"
+                            Height="Auto">
+                        <Border>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Species of Concern"
+                                           Grid.Row="0"
+                                           TextWrapping="Wrap"
+                                           HorizontalAlignment="Center"
+                                           Foreground="{Binding SpeciesOfConcern.Value, Converter={StaticResource IndicatorColorConverter}}" />
+                                <TextBlock Text="{Binding SpeciesOfConcern.Value}"
+                                           Grid.Row="1"
+                                           HorizontalAlignment="Center"
+                                           Foreground="{Binding SpeciesOfConcern.Value, Converter={StaticResource IndicatorColorConverter}}" />
+                                <TextBlock HorizontalAlignment="Right"
+                                           VerticalAlignment="Bottom"
+                                           Grid.Row="1"
+                                           Margin="1"
+                                           Foreground="Gray"
+                                           FontSize="10">
+                                        <Run Text="(" /><Run Text="{Binding SpeciesOfConcern.Weight, StringFormat=F2}"></Run><Run Text=")" /></TextBlock>
+                            </Grid>
+                        </Border>
+                    </Button>
+                </materialDesign:Flipper.FrontContent>
+            </materialDesign:Flipper>
+            <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}">
+                <materialDesign:Flipper.FrontContent>
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                            Command="{Binding EditInvasiveSpeciesCommand}"
+                            Margin="5"
+                            Height="Auto">
+                        <Border>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Invasive Species"
+                                           Grid.Row="0"
+                                           TextWrapping="Wrap"
+                                           HorizontalAlignment="Center"
+                                           Foreground="{Binding InvasiveSpecies.Value, Converter={StaticResource IndicatorColorConverter}}" />
+                                <TextBlock Text="{Binding InvasiveSpecies.Value}"
+                                           Grid.Row="1"
+                                           HorizontalAlignment="Center"
+                                           Foreground="{Binding InvasiveSpecies.Value, Converter={StaticResource IndicatorColorConverter}}" />
+                                <TextBlock HorizontalAlignment="Right"
+                                           VerticalAlignment="Bottom"
+                                           Grid.Row="1"
+                                           Margin="1"
+                                           Foreground="Gray"
+                                           FontSize="10">
+                                        <Run Text="(" /><Run Text="{Binding InvasiveSpecies.Weight, StringFormat=F2}"></Run><Run Text=")" /></TextBlock>
+                            </Grid>
+                        </Border>
+                    </Button>
+                </materialDesign:Flipper.FrontContent>
+            </materialDesign:Flipper>
+            -->
+        </WrapPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,45 @@
+<UserControl x:Class="Fhi.Controls.Indicators.EcosystemServices.F1View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Fhi.Controls.Indicators.EcosystemServices"
+             xmlns:mvvm="clr-namespace:Fhi.Controls.MVVM"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:F1ViewModel}"
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <TextBlock Text="Name:"
+                       Margin="5"
+                       VerticalAlignment="Center" />
+            <TextBox Text="{Binding Su.Name}"
+                     Width="100"
+                     Margin="5"
+                     VerticalContentAlignment="Center" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <TextBlock Text="Units:"
+                       Margin="5"
+                       VerticalAlignment="Center" />
+            <TextBox Text="{Binding Su.Units}"
+                     Width="100"
+                     Margin="5"
+                     VerticalContentAlignment="Center" />
+        </StackPanel>
+        <CheckBox Grid.Row="2" 
+                  Content="Non-compliant Spatial Unit"
+                  IsChecked="{Binding Su.NonCompliant}"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"/>
+        
+    </Grid>
+</UserControl>

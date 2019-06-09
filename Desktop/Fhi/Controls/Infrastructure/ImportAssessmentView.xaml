@@ -1,0 +1,130 @@
+﻿<UserControl x:Class="Fhi.Controls.Infrastructure.ImportAssessmentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Fhi.Controls.Infrastructure"
+             xmlns:mvvm="clr-namespace:Fhi.Controls.MVVM"
+             xmlns:utils="clr-namespace:Fhi.Controls.Utils"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:ImportAssessmentViewModel}"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <mvvm:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <utils:IndicatorColorConverter x:Key="IndicatorColorConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"
+                    Visibility="{Binding BrowseMode, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}">
+            <TextBlock Text="Open a file to import selected indicator data from."
+                       Margin="5" />
+            <Button Content="Open..."
+                    Margin="5"
+                    Command="{Binding OpenCommand}"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    HorizontalAlignment="Left" />
+        </StackPanel>
+        <Grid HorizontalAlignment="Stretch"
+              Grid.Row="0"
+              Margin="5"
+              Visibility="{Binding BrowseMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Image Source="../Images/Fhi.ico"
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   Grid.RowSpan="3"
+                   Height="30"
+                   VerticalAlignment="Center" />
+            <TextBlock Text="{Binding OpenFileInfo.Title}"
+                       TextWrapping="NoWrap"
+                       Grid.Row="0"
+                       Grid.Column="1" />
+            <TextBlock Text="{Binding OpenFileInfo.Year}"
+                       TextWrapping="NoWrap"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       HorizontalAlignment="Right" />
+            <Button Grid.Row="0"
+                    Grid.Column="2"
+                    Command="{Binding ClearCommand}"
+                    ToolTip="Remove reference to this assessment so you can open a different assessment."
+                    Margin="15,0,0,5"
+                    Padding="0"
+                    Height="25"
+                    Width="25"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top">
+                <materialDesign:PackIcon Kind="Close" />
+            </Button>
+            <StackPanel Margin="10,0,0,0"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        HorizontalAlignment="Left">
+                <TextBlock Text="{Binding OpenFileInfo.Name}"
+                           Margin="0,0,0,2" />
+                <TextBlock Text="{Binding OpenFileInfo.Path}"
+                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}" />
+            </StackPanel>
+
+            <TextBlock Text="{Binding OpenFileInfo.Notes}"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       MaxHeight="50"
+                       TextWrapping="Wrap"
+                       TextTrimming="CharacterEllipsis"
+                       Grid.Row="2" />
+            <Separator BorderBrush="LightGray"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       Grid.Row="3" />
+        </Grid>
+        <TreeView ItemsSource="{Binding Indicators}"
+                  Grid.Row="1"
+                  Margin="5"
+                  HorizontalContentAlignment="Stretch"
+                  Visibility="{Binding BrowseMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                    <Grid HorizontalAlignment="Stretch">
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Indicator.Name, Mode=OneWay}"
+                                       Margin="5"
+                                       TextWrapping="Wrap"
+                                       Foreground="{Binding Indicator.Value, Converter={StaticResource IndicatorColorConverter}}" />
+                            <TextBlock Text="{Binding Indicator.Value}"
+                                       Margin="5"
+                                       HorizontalAlignment="Center"
+                                       Foreground="{Binding Indicator.Value, Converter={StaticResource IndicatorColorConverter}}" />
+                        </StackPanel>
+
+                        <Button Content="Import"
+                                Command="{Binding ImportCommand}"
+                                HorizontalAlignment="Right"
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                Margin="5"
+                                Visibility="{Binding Importable, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}" />
+
+                    </Grid>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+    </Grid>
+</UserControl>

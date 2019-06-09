@@ -1,0 +1,45 @@
+<Window x:Class="Fhi.Controls.Indicators.Governance.Wizard.GovernanceWizardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Fhi.Controls.Indicators.Governance.Wizard"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:wizard="clr-namespace:Fhi.Controls.Wizard"
+        mc:Ignorable="d"
+        Title="GovernanceWizardWindow"
+        Width="750"
+        Height="400"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        d:DataContext="{d:DesignInstance d:Type=local:GovernanceWizardViewModel}">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:Step1ViewModel}">
+            <local:Step1/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:Step2ViewModel}">
+            <local:Step2/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:Step3ViewModel}">
+            <local:Step3/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:StepNViewModel}">
+            <local:StepN/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:SummaryStepViewModel}">
+            <local:SummaryStep/>
+        </DataTemplate>
+    </Window.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closed">
+            <i:InvokeCommandAction Command="{Binding Wizard.CancelCommand}"
+                                   CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Border BorderBrush="Black"
+            BorderThickness=".5">
+        <wizard:WizardView DataContext="{Binding Wizard}"
+                           Margin="5" />
+    </Border>
+</Window>

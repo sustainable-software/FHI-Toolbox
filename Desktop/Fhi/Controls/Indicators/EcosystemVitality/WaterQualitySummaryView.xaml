@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="Fhi.Controls.Indicators.EcosystemVitality.WaterQualitySummaryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Fhi.Controls.Indicators.EcosystemVitality"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:waterQuality="clr-namespace:FhiModel.EcosystemVitality.WaterQuality;assembly=FhiModel"
+             xmlns:network="clr-namespace:Fhi.Controls.Network"
+             xmlns:mvvm="clr-namespace:Fhi.Controls.MVVM"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:WaterQualitySummaryViewModel}"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <mvvm:DataContextSpy x:Key="DataContextSpy" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top">
+            <Button Margin="2"
+                    ToolTip="Import water quality gauge time series data from Excel file."
+                    Command="{Binding ImportCommand}"
+                    Foreground="Black"
+                    Padding="0"
+                    Style="{DynamicResource MaterialDesignFlatButton}">
+                <materialDesign:PackIcon Kind="Import"
+                                         Width="25"
+                                         Height="25"
+                                         VerticalAlignment="Center" />
+            </Button>
+            <Button Margin="2"
+                    ToolTip="Export water quality gauge time series data to Excel file."
+                    Command="{Binding ExportCommand}"
+                    Width="28"
+                    Foreground="Black"
+                    Padding="0"
+                    Style="{DynamicResource MaterialDesignFlatButton}">
+                <materialDesign:PackIcon Kind="Export"
+                                         Width="25"
+                                         Height="25"
+                                         VerticalAlignment="Center" />
+            </Button>
+        </StackPanel>
+        <TextBlock Text="Water Quality"
+                   HorizontalAlignment="Center"
+                   Margin="10"
+                   FontSize="14"
+                   Grid.Row="0" />
+        <Button Command="{Binding EditorCommand}"
+                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                ToolTip="Add new water quality gauge to the assessment"
+                Grid.Row="0"
+                Height="25"
+                Width="25"
+                Margin="5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+            <materialDesign:PackIcon Kind="Plus" />
+        </Button>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                          VerticalScrollBarVisibility="Auto"
+                          Grid.Column="0">
+                <ItemsControl ItemsSource="{Binding Indicator.Gauges}"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                              HorizontalAlignment="Center"
+                              HorizontalContentAlignment="Center">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type waterQuality:Gauge}">
+                            <materialDesign:Card Margin="5">
+                                <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                        Command="{Binding DataContext.EditorCommand, Source={StaticResource DataContextSpy}}"
+                                        CommandParameter="{Binding}"
+                                        Height="40">
+                                    <Border>
+                                        <Grid>
+                                            <TextBlock Text="{Binding Name}"
+                                                       Grid.Row="0"
+                                                       Foreground="Gray"
+                                                       TextWrapping="Wrap"
+                                                       HorizontalAlignment="Center" />
+                                        </Grid>
+                                    </Border>
+                                </Button>
+                            </materialDesign:Card>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <network:BasinMapView DataContext="{Binding BasinMapViewModel}"
+                                  Grid.Column="1" />
+         </Grid>
+    </Grid>
+</UserControl>

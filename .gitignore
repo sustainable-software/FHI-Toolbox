@@ -1,0 +1,42 @@
+﻿# Common
+*.log
+
+# Visual Studio
+*.suo
+*.user
+.vs/
+
+# Visual Studio Profiler
+*.psess
+*.vsp
+*.vspx
+
+# Visual Studio Output
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Visual Studio Reports
+_UpgradeReport_Files/
+UpgradeLog*.xml
+UpgradeLog*.htm
+
+# NuGet
+*.nupkg
+**/packages/*
+
+# SQL Server
+*.mdf
+*.ldf
+*.sqlite
+
+# InstallShield
+*.msi
+[Ee]xpress/
+
+
+# JetBrains Rider
+.idea/
+

@@ -1,0 +1,286 @@
+<Window x:Class="Fhi.Controls.Indicators.EcosystemVitality.StationEditorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Fhi.Controls.Indicators.EcosystemVitality"
+        xmlns:mvvm="clr-namespace:Fhi.Controls.MVVM"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance local:StationEditorViewModel}"
+        Title="Station Editor"
+        WindowStartupLocation="CenterOwner"
+        Icon="../../Images/Fhi.ico"
+        Height="450"
+        Width="800">
+    <Window.Resources>
+        <mvvm:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <mvvm:DataContextSpy x:Key="DataContextSpy" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <TextBlock Text="Name:"
+                       Margin="5"
+                       VerticalAlignment="Center" />
+            <TextBox Text="{Binding Station.Name}"
+                     Width="100"
+                     Margin="5"
+                     VerticalContentAlignment="Center" />
+            <TextBlock Text="Units:"
+                       Margin="5"
+                       VerticalAlignment="Center" />
+            <TextBox Text="{Binding Station.Units}"
+                     Width="100"
+                     Margin="5"
+                     VerticalContentAlignment="Center" />
+        </StackPanel>
+        <!--
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="0"
+                    HorizontalAlignment="Right">
+            <TextBlock Text="Year:"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+            <ComboBox SelectedItem="{Binding SelectedYear}"
+                      ItemsSource="{Binding Years}"
+                      Margin="5"
+                      VerticalContentAlignment="Center" />
+        </StackPanel>
+        -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*" />
+                <ColumnDefinition Width="25*" />
+                <ColumnDefinition Width="30*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Regulated Flow"
+                           HorizontalAlignment="Center"
+                           Margin="0"
+                           FontSize="14"
+                           FontWeight="DemiBold" />
+                <Button Grid.Row="0"
+                        Grid.Column="0"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        ToolTip="Paste single column of numerical data from Excel or a text file"
+                        Padding="0"
+                        Margin="2"
+                        HorizontalAlignment="Left"
+                        Command="{Binding PasteCommand}"
+                        CommandParameter="Regulated">
+                    <materialDesign:PackIcon Kind="ContentPaste"
+                                             Height="21"
+                                             Width="21" />
+                </Button>
+                <DataGrid Margin="2"
+                          Grid.Row="1"
+                          ItemsSource="{Binding Station.Regulated}"
+                          CanUserSortColumns="True"
+                          CanUserAddRows="False"
+                          AutoGenerateColumns="False"
+                          materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+                          materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Time, StringFormat=d}"
+                                            IsReadOnly="True"
+                                            Header="Time"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTextColumn Binding="{Binding Value}"
+                                            IsReadOnly="False"
+                                            Header="Value"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Button Command="{Binding Path=DataContext.RemoveRegulatedTimestepCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                                CommandParameter="{Binding}"
+                                                ToolTip="Remove this timestep from the assessment"
+                                                Margin="0"
+                                                Padding="0"
+                                                Height="20"
+                                                Width="20"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="Close" />
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Unregulated Flow"
+                           HorizontalAlignment="Center"
+                           Margin="0"
+                           FontSize="14"
+                           FontWeight="DemiBold" />
+                <Button Grid.Row="0"
+                        Grid.Column="0"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        ToolTip="Paste single column of numerical data from Excel or a text file"
+                        Padding="0"
+                        Margin="2"
+                        HorizontalAlignment="Left"
+                        Command="{Binding PasteCommand}"
+                        CommandParameter="Unregulated">
+                    <materialDesign:PackIcon Kind="ContentPaste"
+                                             Height="21"
+                                             Width="21" />
+                </Button>
+                <DataGrid Margin="2"
+                          Grid.Row="1"
+                          ItemsSource="{Binding Station.Unregulated}"
+                          CanUserSortColumns="True"
+                          CanUserAddRows="False"
+                          AutoGenerateColumns="False"
+                          materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+                          materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Time, StringFormat=d}"
+                                            IsReadOnly="True"
+                                            Header="Time"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTextColumn Binding="{Binding Value}"
+                                            IsReadOnly="False"
+                                            Header="Value"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Button Command="{Binding Path=DataContext.RemoveUnregulatedTimestepCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                                CommandParameter="{Binding}"
+                                                ToolTip="Remove this timestep from the assessment"
+                                                Margin="0"
+                                                Padding="0"
+                                                Height="20"
+                                                Width="20"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="Close" />
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <GroupBox Grid.Row="0"
+                          Margin="2,17,2,2">
+                    <GroupBox.Header>
+                        <Grid>
+                            <TextBlock Text="Add Data"
+                                       HorizontalAlignment="Left" />
+                            <materialDesign:PackIcon Kind="ArrowLeft"
+                                                     HorizontalAlignment="Center" />
+                        </Grid>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <RadioButton Grid.Column="0"
+                                         Content="Regulated"
+                                         HorizontalAlignment="Center"
+                                         IsChecked="{Binding AddRegulated}" />
+                            <RadioButton Grid.Column="1"
+                                         Content="Unregulated"
+                                         HorizontalAlignment="Center"
+                                         IsChecked="{Binding AddUnregulated}" />
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <DatePicker SelectedDate="{Binding Timestep.Time}"
+                                            Margin="2" />
+                                <TextBox Text="{Binding Timestep.Value}"
+                                         VerticalContentAlignment="Center"
+                                         Margin="2" />
+                            </StackPanel>
+                            <Button Content="Add Timestep"
+                                    Command="{Binding AddTimestepCommand}"
+                                    Margin="2"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Right"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+                        </Grid>
+                        <Grid>
+                            <Button Content="Add Full Year"
+                                    Command="{Binding AddYearCommand}"
+                                    Margin="2"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+                            <!--
+              <Button Content="Import..."
+                      Margin="2"
+                      HorizontalAlignment="Right"
+                      Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+                -->
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Grid.Row="1">
+                    <TextBlock>
+            <Run Text="DvNF:" />
+            <Run Text="{Binding Station.FlowDeviation, StringFormat=N2, Mode=OneWay}" /></TextBlock>
+                    <TextBlock>
+            <Run Text="Mean discharge:" />
+            <Run Text="{Binding Station.MeanDischarge, StringFormat=N0, Mode=OneWay}" /></TextBlock>
+                    <TextBlock>
+            <Run Text="Net AAPFD:" />
+            <Run Text="{Binding Station.NetAapfd, StringFormat=N2, Mode=OneWay}" /></TextBlock>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button IsCancel="True"
+                    Content="Cancel"
+                    Margin="5"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+            <Button Content="Ok"
+                    Margin="5"
+                    mvvm:DialogBehavior.IsOk="True"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+        </StackPanel>
+        <Button Content="Locate..."
+                Grid.Row="2"
+                Margin="5"
+                HorizontalAlignment="Left"
+                Command="{Binding LocateCommand}"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+    </Grid>
+</Window>

@@ -1,0 +1,76 @@
+<UserControl x:Class="Fhi.Controls.Indicators.Governance.Wizard.Step2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Fhi.Controls.Indicators.Governance.Wizard"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:Step2ViewModel}"
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Import Data"
+                   FontSize="16"
+                   FontWeight="Bold"
+                   Grid.Row="0"
+                   Margin="10" 
+                   HorizontalAlignment="Center"/>
+        <TextBlock Margin="20"
+                   Grid.Row="1"
+                   TextWrapping="Wrap">
+            <Run>
+                Save the data from the Excel spreadsheet into a CSV file by first making certain
+                you have the sheet selected. Then, go to File>Save As. Choose the directory on the local
+                computer to save into, pick the file name, and (this is an important detail) choose the
+                file save type as "CSV UTF-8 (Comma delimited)", then click the Save button.
+            </Run>
+            <LineBreak />
+            <LineBreak />
+            <Run>
+                Next, you must exit Excel. The reason is that Windows will not allow two programs
+                to have the same file open.
+            </Run>
+            <LineBreak />
+            <LineBreak />
+            <Run>
+                If the survey you're importing varies from the standard mapping of questions to indicators,
+                uncheck the box that says 'Automatically assign question groups to indicators'. The wizard will
+                then walk you through each question group and allow you to manually assign them to an indicator.
+            </Run>
+            <LineBreak />
+            <LineBreak />
+            <Run>
+                Now click the import button below and navigate to where you saved the CSV file.
+            </Run>
+        </TextBlock>
+        <StackPanel Grid.Row="2">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Button Command="{Binding ImportCommand}"
+                        Content="Import..."
+                        Width="100"
+                        Margin="10"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+                <CheckBox Content="Automatically assign question groups to indicators."
+                          IsChecked="{Binding AutoAssignQuestions}"
+                          Margin="10"/>
+            </StackPanel>
+            <TextBlock Visibility="{Binding ReadyForNext, Converter={StaticResource BooleanToVisibilityConverter}}"
+                       TextWrapping="Wrap"
+                       Margin="20"
+                       FontSize="16">
+                <Run Text="Imported" />
+                <Run Text="{Binding Groups, Mode=OneWay}" />
+                <Run Text="sets of questions from '" /><Run Text="{Binding Filename}" />
+                <Run Text="' with answers from" />
+                <Run Text="{Binding Users, Mode=OneWay}" />
+                <Run Text="people." />
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>

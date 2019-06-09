@@ -1,0 +1,49 @@
+<UserControl x:Class="Fhi.Controls.Indicators.EcosystemServices.EcosystemServicesSummaryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Fhi.Controls.Indicators.EcosystemServices"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:ecosystemServices="clr-namespace:FhiModel.EcosystemServices;assembly=FhiModel"
+             xmlns:utils="clr-namespace:Fhi.Controls.Utils"
+             xmlns:mvvm="clr-namespace:Fhi.Controls.MVVM"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:EcosystemServicesSummaryViewModel}"
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+    <UserControl.Resources>
+        <mvvm:DataContextSpy x:Key="DataContextSpy" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding MajorIndicator.Name}"
+                   HorizontalAlignment="Center"
+                   Margin="10"
+                   FontSize="14"
+                   Grid.Row="0" />
+        <ItemsControl ItemsSource="{Binding Summary}"
+                      Grid.Row="1"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      HorizontalAlignment="Center"
+                      HorizontalContentAlignment="Center">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type ecosystemServices:EcosystemServicesIndicator}">
+                    <utils:LeafIndicator EditCommand="{Binding DataContext.EditIndicatorCommand, Source={StaticResource DataContextSpy}}"
+                                         Indicator="{Binding}"
+                                         IndicatorName="{Binding Name}"
+                                         ContextHelp="Ecosystem_Services/Provisioning_and_Regulating/Background.html"
+                                         Margin="5"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</UserControl>

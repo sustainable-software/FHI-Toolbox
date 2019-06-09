@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="Fhi.Controls.Indicators.Governance.GovernanceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Fhi.Controls.Indicators.Governance"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:utils="clr-namespace:Fhi.Controls.Utils"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:GovernanceViewModel}"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <utils:IndicatorColorConverter x:Key="IndicatorColorConverter" />
+        <DataTemplate DataType="{x:Type local:GovernanceSummaryViewModel}">
+            <local:GovernanceSummaryView />
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Button Command="{Binding BackCommand}"
+                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                Height="25"
+                Width="25"
+                Margin="5"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left">
+            <materialDesign:PackIcon Kind="ArrowLeft" />
+        </Button>
+
+        <Grid Grid.Row="0"
+              HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Governance"
+                       Grid.Row="0"
+                       Margin="5"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding Pillar.Value}"
+                       Grid.Row="1"
+                       Margin="0,-12,0,10"
+                       FontSize="40"
+                       FontWeight="Bold"
+                       Foreground="{Binding Pillar.Value, Converter={StaticResource IndicatorColorConverter}}"
+                       HorizontalAlignment="Center"/>
+        </Grid>
+        <Button Grid.Row="0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="5"
+                ToolTip="Import governance survey data from CSV file."
+                Command="{Binding ImportCommand}"
+                Foreground="Black"
+                Padding="0"
+                Style="{DynamicResource MaterialDesignFlatButton}">
+            <materialDesign:PackIcon Kind="Import"
+                                     Width="25"
+                                     Height="25"
+                                     VerticalAlignment="Center" />
+        </Button>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <utils:SubIndicatorView Grid.Column="0"
+                                    HorizontalAlignment="Center"
+                                    Command="{Binding EnvironmentCommand}"
+                                    IndicatorName="Enabling&#x0a;Environment"
+                                    Indicator="{Binding Environment}"
+                                    Selected="{Binding EnvironmentSelected}"
+                                    ContextHelp="Governance_and_Stakeholders/Definitions.html" />
+            <utils:SubIndicatorView Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    Command="{Binding EngagementCommand}"
+                                    IndicatorName="Stakeholder&#x0a;Engagement"
+                                    Indicator="{Binding Engagement}"
+                                    Selected="{Binding EngagementSelected}"
+                                    ContextHelp="Governance_and_Stakeholders/Definitions.html" />
+            <utils:SubIndicatorView Grid.Column="2"
+                                    HorizontalAlignment="Center"
+                                    Command="{Binding EffectivenessCommand}"
+                                    IndicatorName="Effectiveness"
+                                    Indicator="{Binding Effectiveness}"
+                                    Selected="{Binding EffectivenessSelected}"
+                                    ContextHelp="Governance_and_Stakeholders/Definitions.html" />
+            <utils:SubIndicatorView Grid.Column="3"
+                                    HorizontalAlignment="Center"
+                                    Command="{Binding VisionCommand}"
+                                    IndicatorName="Vision and&#x0a;Adaptation"
+                                    Indicator="{Binding Vision}"
+                                    Selected="{Binding VisionSelected}"
+                                    ContextHelp="Governance_and_Stakeholders/Definitions.html" />
+        </Grid>
+        <Separator Grid.Row="2"
+                   BorderBrush="DarkGray" />
+        <ContentControl Grid.Row="3"
+                        Content="{Binding SelectedViewModel}" />
+        <Rectangle Grid.Row="0"
+                   Grid.RowSpan="4"
+                   Fill="LightGray"
+                   Visibility="{Binding BlockWindow, Converter={StaticResource BooleanToVisibilityConverter}}" />
+    </Grid>
+</UserControl>

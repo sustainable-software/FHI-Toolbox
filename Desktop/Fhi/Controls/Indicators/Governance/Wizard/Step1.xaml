@@ -1,0 +1,87 @@
+<UserControl x:Class="Fhi.Controls.Indicators.Governance.Wizard.Step1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Fhi.Controls.Indicators.Governance.Wizard"
+             xmlns:utils="clr-namespace:Fhi.Controls.Utils"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:Step1ViewModel}"
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Setup for Governance Indicators"
+                   Grid.Row="0"
+                   FontSize="16"
+                   FontWeight="Bold"
+                   Margin="10"
+                   HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="1"
+                   Margin="20"
+                   TextWrapping="Wrap">
+            <Run>
+                This wizard will guide you through importing basin stakeholder survey data
+                which forms the basis for the governance indicators.
+            </Run>
+            <LineBreak/>
+            <LineBreak/>
+            <Run>
+                The first step is to open the survey in Excel and note the column which holds the
+                user identifier and the column in which the questions begin. The default for the user
+                identification is column 'A', and the default for the questions is column 'K'.
+            </Run>
+            <LineBreak/>
+            <LineBreak/>
+            <Run>
+                Next, notice that the last question in a given group starts with the same thing and
+                that's how we determine question grouping. If necessary, you can modify what the last
+                question starts with. The default is 'Please provide'.
+            </Run>
+        </TextBlock>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="User Identifier Column"
+                           Margin="5"
+                           HorizontalAlignment="Center"/>
+                <ComboBox SelectedItem="{Binding UserColumn}"
+                          ItemsSource="{Binding ColumnChoices}"
+                          Margin="5"
+                          Width="50"
+                          HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="Questions Starting Column"
+                           Margin="5"
+                           HorizontalAlignment="Center"/>
+                <ComboBox SelectedItem="{Binding QuestionColumn}"
+                          ItemsSource="{Binding ColumnChoices}"
+                          Margin="5"
+                          Width="50"
+                          HorizontalAlignment="Center"/>
+            </StackPanel>
+            
+        </Grid>
+        <StackPanel Grid.Row="3"
+                    HorizontalAlignment="Center">
+            <TextBlock Text="Last question in group starts with:"
+                       Margin="5"/>
+            <TextBox Text="{Binding LastQuestion}"
+                     Width="200"
+                     Margin="5"/>
+        </StackPanel>
+        <utils:ContextHelp Grid.Row="3"
+                           Url="Governance_and_Stakeholders/Survey.html"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Bottom"/>
+    </Grid>
+</UserControl>

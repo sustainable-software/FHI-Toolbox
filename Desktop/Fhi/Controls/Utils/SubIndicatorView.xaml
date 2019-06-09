@@ -1,0 +1,186 @@
+﻿<UserControl x:Class="Fhi.Controls.Utils.SubIndicatorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Fhi.Controls.Utils"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+             xmlns:mvvm="clr-namespace:Fhi.Controls.MVVM"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <local:IndicatorWeightConverter x:Key="IndicatorWeightConverter" />
+        <mvvm:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <local:SubIndicator Grid.Row="0"
+                            Command="{Binding Command, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SubIndicatorView}}}"
+                            IndicatorName="{Binding IndicatorName,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SubIndicatorView}} }"
+                            Indicator="{Binding Indicator, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SubIndicatorView}}}"
+                            Selected="{Binding Selected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SubIndicatorView}}}"
+                            ContextHelp="{Binding ContextHelp, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SubIndicatorView}}}"/>
+        <Grid Grid.Row="1"
+              Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Border Background="White"
+                    CornerRadius="{Binding Path=ActualHeight, ElementName=border}"
+                    BorderThickness="1"
+                    BorderBrush="Black"
+                    x:Name="border"
+                    Grid.Column="0"
+                    Width="7"
+                    Height="7"
+                    Margin="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                <Ellipse Fill="Black"
+                         Visibility="{Binding Indicator.Weight, ConverterParameter=1, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SubIndicatorView}}, Converter={StaticResource IndicatorWeightConverter} }" />
+            </Border>
+            <Border Background="White"
+                    CornerRadius="{Binding Path=ActualHeight, ElementName=border}"
+                    BorderThickness="1"
+                    BorderBrush="Black"
+                    Grid.Column="1"
+                    Width="7"
+                    Height="7"
+                    Margin="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                <Ellipse Fill="Black"
+                         Visibility="{Binding Indicator.Weight, ConverterParameter=2, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SubIndicatorView}}, Converter={StaticResource IndicatorWeightConverter} }" />
+            </Border>
+            <Border Background="White"
+                    CornerRadius="{Binding Path=ActualHeight, ElementName=border}"
+                    BorderThickness="1"
+                    BorderBrush="Black"
+                    Grid.Column="2"
+                    Width="7"
+                    Height="7"
+                    Margin="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                <Ellipse Fill="Black"
+                         Visibility="{Binding Indicator.Weight, ConverterParameter=3, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SubIndicatorView}}, Converter={StaticResource IndicatorWeightConverter} }" />
+            </Border>
+            <Border Background="White"
+                    CornerRadius="{Binding Path=ActualHeight, ElementName=border}"
+                    BorderThickness="1"
+                    BorderBrush="Black"
+                    Grid.Column="3"
+                    Width="7"
+                    Height="7"
+                    Margin="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                <Ellipse Fill="Black"
+                         Visibility="{Binding Indicator.Weight, ConverterParameter=4, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SubIndicatorView}}, Converter={StaticResource IndicatorWeightConverter} }" />
+            </Border>
+            <Border Background="White"
+                    CornerRadius="{Binding Path=ActualHeight, ElementName=border}"
+                    BorderThickness="1"
+                    BorderBrush="Black"
+                    Grid.Column="4"
+                    Width="7"
+                    Height="7"
+                    Margin="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                <Ellipse Fill="Black"
+                         Visibility="{Binding Indicator.Weight, ConverterParameter=5, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SubIndicatorView}}, Converter={StaticResource IndicatorWeightConverter} }" />
+            </Border>
+            <Border Background="White"
+                    CornerRadius="{Binding Path=ActualHeight, ElementName=border}"
+                    BorderThickness="1"
+                    BorderBrush="Black"
+                    Grid.Column="5"
+                    Width="7"
+                    Height="7"
+                    Margin="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                <Ellipse Fill="Black"
+                         Visibility="{Binding Indicator.Weight, ConverterParameter=6, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SubIndicatorView}}, Converter={StaticResource IndicatorWeightConverter} }" />
+            </Border>
+            <Border Background="White"
+                    CornerRadius="{Binding Path=ActualHeight, ElementName=border}"
+                    BorderThickness="1"
+                    BorderBrush="Black"
+                    Grid.Column="6"
+                    Width="7"
+                    Height="7"
+                    Margin="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                <Ellipse Fill="Black"
+                         Visibility="{Binding Indicator.Weight, ConverterParameter=7, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SubIndicatorView}}, Converter={StaticResource IndicatorWeightConverter} }" />
+            </Border>
+            <Border Background="White"
+                    CornerRadius="{Binding Path=ActualHeight, ElementName=border}"
+                    BorderThickness="1"
+                    BorderBrush="Black"
+                    Grid.Column="7"
+                    Width="7"
+                    Height="7"
+                    Margin="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                <Ellipse Fill="Black"
+                         Visibility="{Binding Indicator.Weight, ConverterParameter=8, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SubIndicatorView}}, Converter={StaticResource IndicatorWeightConverter} }" />
+            </Border>
+            <Border Background="White"
+                    CornerRadius="{Binding Path=ActualHeight, ElementName=border}"
+                    BorderThickness="1"
+                    BorderBrush="Black"
+                    Grid.Column="8"
+                    Width="7"
+                    Height="7"
+                    Margin="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                <Ellipse Fill="Black"
+                         Visibility="{Binding Indicator.Weight, ConverterParameter=9, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SubIndicatorView}}, Converter={StaticResource IndicatorWeightConverter} }" />
+            </Border>
+            <Border Background="White"
+                    CornerRadius="{Binding Path=ActualHeight, ElementName=border}"
+                    BorderThickness="1"
+                    BorderBrush="Black"
+                    Grid.Column="9"
+                    Width="7"
+                    Height="7"
+                    Margin="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                <Ellipse Fill="Black"
+                         Visibility="{Binding Indicator.Weight, ConverterParameter=10, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SubIndicatorView}}, Converter={StaticResource IndicatorWeightConverter} }" />
+            </Border>
+            <TextBlock Grid.Column="10"
+                       FontWeight="DemiBold"
+                       Margin="2,0">
+                <Run Text="(" /><Run Text="{Binding Indicator.Weight, StringFormat=N2, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SubIndicatorView}}}" /><Run Text=")" /></TextBlock>
+        </Grid>
+        <Rectangle Grid.Row="2"
+                   Height="5"
+                   Margin="0,0,0,-5"
+                   Fill="{DynamicResource PrimaryHueMidBrush}"
+                   Visibility="{Binding Selected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SubIndicatorView}}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+    </Grid>
+</UserControl>

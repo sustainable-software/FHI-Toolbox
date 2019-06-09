@@ -1,0 +1,38 @@
+<UserControl x:Class="Fhi.Controls.Indicators.Core.WeightView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:core="clr-namespace:Fhi.Controls.Indicators.Core"
+             xmlns:utils="clr-namespace:Fhi.Controls.Utils"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance core:WeightValueViewModel}"
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding Name}"
+                   Grid.Row="0"
+                   Margin="5,0"/>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="1">
+            <Slider Minimum="0"
+                    Maximum="100"
+                    Margin="5"
+                    Width="100"
+                    Value="{Binding Value}"
+                    VerticalAlignment="Center"/>
+            <TextBox Margin="5,0,0,0" 
+                     Width="25"
+                     VerticalAlignment="Center"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     Text="{Binding Value}"/>
+            <TextBlock Text="%"
+                       VerticalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

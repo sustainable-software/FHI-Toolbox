@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*"
+           Name="FHI Tool"
+           Language="1033"
+           Version="!(bind.FileVersion.Fhi.exe)"
+           Manufacturer="Conservation International"
+           UpgradeCode="490768eb-fc90-4e76-bfd6-9dbfbb098ea4">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <UIRef Id="WixUI_Minimal"/>
+    <MajorUpgrade DowngradeErrorMessage="A newer version of FHI Tool is already installed." />
+    <MediaTemplate EmbedCab="yes"/>
+    <Icon Id="ProductIcon" SourceFile="$(var.SolutionDir)Fhi\Controls\Images\Fhi.ico"/>
+    <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+    <Property Id="ARPPRODUCTICON" Value="ProductIcon"/>
+
+    <Feature Id="ProductFeature" Title="FHI Tool" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="ApplicationShortcut"/>
+      <ComponentRef Id="DesktopShortcut"/>
+      <ComponentGroupRef Id="ArcGisComponents"/>
+      <ComponentGroupRef Id="GdalComponents"/>
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="MANUFACTURERFOLDER" Name="Conservation International">
+          <Directory Id="INSTALLFOLDER" Name="FHI Tool">
+
+          </Directory>
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Component Id="ApplicationShortcut" Guid="{C1DA7F1D-C371-4F13-99E2-EDF01227EA80}">
+          <Shortcut Id="ApplicationShortcut1"
+                    Name="FHI Tool"
+                    Description="Freshwater Health Index Tool"
+                    Icon="ProductIcon"
+                    Target="[INSTALLFOLDER]Fhi.exe"
+                    WorkingDirectory="INSTALLFOLDER"/>
+          <RegistryValue Root="HKCU" Key="Software\Conservation International\FHI Tool\StartMenuShortcut"
+                         Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+          <RemoveFolder Id="ProgramMenuSubfolder" On="uninstall"/>
+
+        </Component>
+      </Directory>
+      <Directory Id="DesktopFolder" Name="Desktop">
+        <Component Id="DesktopShortcut" Guid="{CCA15AEB-E6E8-4007-907A-E5A4A9377E5A}">
+          <Shortcut Id="ApplicationDesktopShortcut"
+                    Name="FHI Tool"
+                    Description="Freshwater Health Index Tool"
+                    Target="[INSTALLFOLDER]Fhi.exe"
+                    WorkingDirectory="INSTALLFOLDER"
+                    Icon="ProductIcon"/>
+          <RegistryValue Root="HKCU" Key="Software\Conservation International\FHI Tool\DesktopShortcut"
+                         Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+        </Component>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <!-- .fhix file launching -->
+      <Component Id="fhiHandlerProgId"
+                   Guid="{45274BFC-6C7E-498D-829D-61EA275E2C11}"
+                   KeyPath="yes">
+        <ProgId Id="fhixFile"
+                Description="FHI File"
+                Icon="Fhi.ico">
+          <Extension Id="fhix"
+                     ContentType="application/fhix">
+            <Verb Id="open"
+                  TargetFile="Fhi.exe"
+                  Argument="&quot;%1&quot;"/>
+          </Extension>
+        </ProgId>
+      </Component>
+    
+
+      <Component Id="Fhi.exe" Guid="{2C1C9FD4-4310-4949-AAF9-1EB006975FA2}">
+        <File Id="Fhi.exe" Name="Fhi.exe" Source="$(var.Fhi.TargetDir)Fhi.exe" />
+      </Component>
+      <Component Id="Fhi.exe.config" Guid="{5969E116-4BD9-43AD-8A5F-F9AC29DE6F5E}">
+        <File Id="Fhi.exe.config" Name="Fhi.exe.config" Source="$(var.Fhi.TargetDir)Fhi.exe.config" />
+      </Component>
+      <Component Id="FhiModel.dll" Guid="{A6F1ED09-AC91-424F-A4A0-A6679988930A}">
+        <File Id="FhiModel.dll" Name="FhiModel.dll" Source="$(var.Fhi.TargetDir)FhiModel.dll" />
+      </Component>
+
+      <Component Id="Fhi.ico" Guid="{BD9C9F03-6A48-4CAD-94FF-976CB92A3E39}">
+        <File Id="Fhi.ico" Name="Fhi.ico" Source="$(var.SolutionDir)\Fhi\Controls\Images\Fhi.ico" />
+      </Component>
+
+      <Component Id="LICENSE.rtf" Guid="{19F7C275-B003-4920-B30D-AAC4D3BA2F6A}">
+        <File Id="LICENSE.rtf" Name="LICENSE.rtf" Source="$(var.SolutionDir)WiX Install\LICENSE.rtf" />
+      </Component>
+
+      <Component Id="Esri.ArcGISRuntime.dll" Guid="{93588986-9CD3-465F-AC97-9B926B668FE2}">
+        <File Id="Esri.ArcGISRuntime.dll" Name="Esri.ArcGISRuntime.dll" Source="$(var.Fhi.TargetDir)Esri.ArcGISRuntime.dll" />
+      </Component>
+      <Component Id="System.Net.Http.dll" Guid="{B889C9BB-35AC-4A35-A099-F66CD3045EAB}">
+        <File Id="System.Net.Http.dll" Name="System.Net.Http.dll" Source="$(var.Fhi.TargetDir)System.Net.Http.dll" />
+      </Component>
+      <Component Id="System.IO.Compression.dll" Guid="{5DA26201-A928-4DAF-B3BA-52F1020699CA}">
+        <File Id="System.IO.Compression.dll" Name="System.IO.Compression.dll" Source="$(var.Fhi.TargetDir)System.IO.Compression.dll" />
+      </Component>
+      <Component Id="MaterialDesignThemes.Wpf.dll" Guid="{E1C2D694-F3E5-4327-8FD6-0966302B1F22}">
+        <File Id="MaterialDesignThemes.Wpf.dll" Name="MaterialDesignThemes.Wpf.dll" Source="$(var.Fhi.TargetDir)MaterialDesignThemes.Wpf.dll" />
+      </Component>
+      <Component Id="MaterialDesignColors.dll" Guid="{D4FE3BB5-6D96-4FF4-9C68-3CC460F0992B}">
+        <File Id="MaterialDesignColors.dll" Name="MaterialDesignColors.dll" Source="$(var.Fhi.TargetDir)MaterialDesignColors.dll" />
+      </Component>
+      <Component Id="CsvHelper.dll" Guid="{15BF4E45-CFBA-41B6-A93C-95F493A43927}">
+        <File Id="CsvHelper.dll" Name="CsvHelper.dll" Source="$(var.Fhi.TargetDir)CsvHelper.dll" />
+      </Component>
+      <Component Id="netstandard.dll" Guid="{727E2F63-06F9-4273-BA71-206609C06B6B}">
+        <File Id="netstandard.dll" Name="netstandard.dll" Source="$(var.Fhi.TargetDir)netstandard.dll" />
+      </Component>
+      <Component Id="System.Windows.Interactivity.dll" Guid="{DEB33E00-09A3-4D0B-ADB2-EF853E08B5A8}">
+        <File Id="System.Windows.Interactivity.dll" Name="System.Windows.Interactivity.dll" Source="$(var.Fhi.TargetDir)System.Windows.Interactivity.dll" />
+      </Component>
+      <Component Id="Newtonsoft.Json.dll" Guid="{7906194D-E8E3-4662-823C-D4B6DAC0C4C7}">
+        <File Id="Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" Source="$(var.Fhi.TargetDir)Newtonsoft.Json.dll" />
+      </Component>
+      <Component Id="Microsoft.ApplicationInsights.dll" Guid="{AEE4A8D8-7C2E-48D3-9294-9912E722D5D8}">
+        <File Id="Microsoft.ApplicationInsights.dll" Name="Microsoft.ApplicationInsights.dll" Source="$(var.Fhi.TargetDir)Microsoft.ApplicationInsights.dll" />
+      </Component>
+      <Component Id="System.ValueTuple.dll" Guid="{3F6A4E29-AFBA-411C-84B0-C7EF0A843870}">
+        <File Id="System.ValueTuple.dll" Name="System.ValueTuple.dll" Source="$(var.Fhi.TargetDir)System.ValueTuple.dll" />
+      </Component>
+      <Component Id="ogr_csharp.dll" Guid="{ED462182-71D6-4CD1-9468-F42D0F417114}">
+        <File Id="ogr_csharp.dll" Name="ogr_csharp.dll" Source="$(var.Fhi.TargetDir)ogr_csharp.dll" />
+      </Component>
+      <Component Id="osr_csharp.dll" Guid="{1542919C-475F-456A-AD1F-6B0D41ADB9E7}">
+        <File Id="osr_csharp.dll" Name="osr_csharp.dll" Source="$(var.Fhi.TargetDir)osr_csharp.dll" />
+      </Component>
+      <Component Id="gdal_csharp.dll" Guid="{0F8B6971-226A-41D0-AAB6-F6356D2C5A96}">
+        <File Id="gdal_csharp.dll" Name="gdal_csharp.dll" Source="$(var.Fhi.TargetDir)gdal_csharp.dll" />
+      </Component>
+      <Component Id="gdalconst_csharp.dll" Guid="{ED2E2E28-6F4C-49A6-9C48-D3705E0CDB72}">
+        <File Id="gdalconst_csharp.dll" Name="gdalconst_csharp.dll" Source="$(var.Fhi.TargetDir)gdalconst_csharp.dll" />
+      </Component>
+      <Component Id="Xceed.Words.NET.dll" Guid="{6321C4B1-D28B-4524-B1CD-6B91732C17DD}">
+        <File Id="Xceed.Words.NET.dll" Name="Xceed.Words.NET.dll" Source="$(var.Fhi.TargetDir)Xceed.Words.NET.dll" />
+      </Component>
+      <Component Id="EPPlus.dll" Guid="{81003FB7-9AA2-4BEA-8E6C-14E847D39D5C}">
+        <File Id="EPPlus.dll" Name="EPPlus.dll" Source="$(var.Fhi.TargetDir)EPPlus.dll" />
+      </Component>
+      <Component Id="System.Windows.Controls.Input.Toolkit.dll" Guid="{4A6512FE-98C8-4616-A270-56870D7F0334}">
+        <File Id="System.Windows.Controls.Input.Toolkit.dll" Name="System.Windows.Controls.Input.Toolkit.dll" Source="$(var.Fhi.TargetDir)System.Windows.Controls.Input.Toolkit.dll" />
+      </Component>
+      <Component Id="System.Windows.Controls.Layout.Toolkit.dll" Guid="{7C7B8128-26A2-4ABA-86B0-E465A9822409}">
+        <File Id="System.Windows.Controls.Layout.Toolkit.dll" Name="System.Windows.Controls.Layout.Toolkit.dll" Source="$(var.Fhi.TargetDir)System.Windows.Controls.Layout.Toolkit.dll" />
+      </Component>
+      <Component Id="WPFToolkit.dll" Guid="{4529D4A4-37C1-4A1E-9D60-75349969F49B}">
+        <File Id="WPFToolkit.dll" Name="WPFToolkit.dll" Source="$(var.Fhi.TargetDir)WPFToolkit.dll" />
+      </Component>
+      <Component Id="System.Windows.Controls.DataVisualization.Toolkit.dll" Guid="{7B4DF5F5-B77F-4DF5-AA73-E5C9A8E8FAC5}">
+        <File Id="System.Windows.Controls.DataVisualization.Toolkit.dll" Name="System.Windows.Controls.DataVisualization.Toolkit.dll" Source="$(var.Fhi.TargetDir)System.Windows.Controls.DataVisualization.Toolkit.dll" />
+      </Component>
+      <Component Id="Microsoft.Expression.Controls.dll" Guid="{29AA7BA0-D24F-4597-AD4E-A04C9A56922A}">
+        <File Id="Microsoft.Expression.Controls.dll" Name="Microsoft.Expression.Controls.dll" Source="$(var.Fhi.TargetDir)Microsoft.Expression.Controls.dll" />
+      </Component>
+      <Component Id="Microsoft.Expression.Drawing.dll" Guid="{DF444C72-9FBB-47CC-85F5-A9E60FAC94A9}">
+        <File Id="Microsoft.Expression.Drawing.dll" Name="Microsoft.Expression.Drawing.dll" Source="$(var.Fhi.TargetDir)Microsoft.Expression.Drawing.dll" />
+      </Component>
+      <Component Id="Microsoft.Expression.Effects.dll" Guid="{5B298518-7A9B-4299-B9FC-D4A635B6FE4B}">
+        <File Id="Microsoft.Expression.Effects.dll" Name="Microsoft.Expression.Effects.dll" Source="$(var.Fhi.TargetDir)Microsoft.Expression.Effects.dll" />
+      </Component>
+      <Component Id="Microsoft.Expression.Interactions.dll" Guid="{04FAF833-739C-4C4F-8946-F830B42CA231}">
+        <File Id="Microsoft.Expression.Interactions.dll" Name="Microsoft.Expression.Interactions.dll" Source="$(var.Fhi.TargetDir)Microsoft.Expression.Interactions.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

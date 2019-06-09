@@ -1,0 +1,181 @@
+<UserControl x:Class="Fhi.Controls.Indicators.EcosystemVitality.BiodiversityView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ecosystemVitality="clr-namespace:Fhi.Controls.Indicators.EcosystemVitality"
+             xmlns:mvvm="clr-namespace:Fhi.Controls.MVVM"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:biodiversity="clr-namespace:FhiModel.EcosystemVitality.Biodiversity;assembly=FhiModel"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance ecosystemVitality:BiodiversityViewModel}"
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+    <UserControl.Resources>
+        <mvvm:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <DataTemplate DataType="{x:Type ecosystemVitality:SpeciesViewModel}">
+            <materialDesign:Card Margin="5"
+                                 HorizontalAlignment="Left">
+
+                <Grid Margin="3">
+                    <Grid.Resources>
+                        <ObjectDataProvider MethodName="GetValues"
+                                            ObjectType="{x:Type sys:Enum}"
+                                            x:Key="RedListCodeValues">
+                            <ObjectDataProvider.MethodParameters>
+                                <x:Type TypeName="biodiversity:RedListCode" />
+                            </ObjectDataProvider.MethodParameters>
+                        </ObjectDataProvider>
+                        <mvvm:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="2"
+                                   Grid.Column="1"
+                                   Visibility="{Binding HasFullName, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Run Text="{Binding Species.Common}" />
+                            <Run Text="("
+                                 FontStyle="Italic" /><Run Text="{Binding Species.Binomial}"
+                                                           FontStyle="Italic" /><Run Text=")"
+                                                                                     FontStyle="Italic" /></TextBlock>
+                        <TextBlock Margin="2"
+                                   Grid.Column="1"
+                                   Visibility="{Binding HasFullName, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}">
+                            <Run Text="{Binding Species.Binomial}"
+                                 FontStyle="Italic" /></TextBlock>
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Visibility="{Binding HasAdd, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    Grid.Column="2">
+                            <TextBlock Visibility="{Binding HasCode, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}"
+                                       Margin="2"
+                                       Text="Select Code:"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Species.Code}"
+                                       VerticalAlignment="Center"
+                                       Visibility="{Binding Species.UserCanChangeCode, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}"
+                                       Margin="10,2" />
+                            <ComboBox SelectedItem="{Binding Species.Code}"
+                                      ItemsSource="{Binding Source={StaticResource RedListCodeValues}}"
+                                      Visibility="{Binding Species.UserCanChangeCode, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                      Margin="10,2"
+                                      VerticalContentAlignment="Center" />
+                            <Button Command="{Binding AddCommand}"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                    ToolTip="Add species to assessment"
+                                    IsEnabled="{Binding HasCode}"
+                                    Margin="0"
+                                    Padding="0"
+                                    Height="20"
+                                    Width="20"
+                                    HorizontalAlignment="Right">
+                                <materialDesign:PackIcon Kind="Plus" />
+                            </Button>
+                            <Button Visibility="{Binding HasAdd, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}"
+                                    Command="{Binding RemoveCommand}"
+                                    ToolTip="Remove species from assessment"
+                                    Margin="0"
+                                    Padding="0"
+                                    Height="20"
+                                    Width="20"
+                                    HorizontalAlignment="Right">
+                                <materialDesign:PackIcon Kind="Close" />
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock Grid.Row="1"
+                               Margin="2"
+                               Visibility="{Binding HasTaxa, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Run Text="{Binding Species.Family}" /><Run Text="/" /><Run Text="{Binding Species.Genus}" /></TextBlock>
+                    <TextBlock Margin="2"
+                               Grid.Row="2">
+                        <Run Text="{Binding Species.Citation}" />
+                        <Run Text="{Binding Species.Year}" /></TextBlock>
+                    <TextBlock Margin="2"
+                               Grid.Row="3">
+                        <Run Text="{Binding CodeDescription, Mode=OneWay}" /></TextBlock>
+                </Grid>
+            </materialDesign:Card>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock HorizontalAlignment="Center"
+                       TextWrapping="Wrap"
+                       Margin="5"
+                       Text="In this dialog you can look at species in either IUCN or Bird Life shapefiles and decide which species should be included in your assessment. The data shown will be clipped to the shape of the basin, so only species that the respective source shows as being in the area will be offered. Review the offered species and click the '+' to include them in the assessment."></TextBlock>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Button Content="Preview Bird Life Shapefiles"
+                        Command="{Binding AddBirdLifeShapefileCommand}"
+                        Margin="5"
+                        HorizontalAlignment="Center"
+                        IsEnabled="{Binding HasBasinShapefile}"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+                <Button Content="Preview IUCN Shapefile"
+                        Command="{Binding AddIucnShapefileCommand}"
+                        Margin="5"
+                        HorizontalAlignment="Center"
+                        IsEnabled="{Binding HasBasinShapefile}"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+                <Button Content="Preview Spreadsheet"
+                        Command="{Binding AddSpreadsheetCommand}"
+                        Margin="5"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+            </StackPanel>
+            <TextBlock Text="Assessment needs a basin shapefile before you can import species."
+                       Visibility="{Binding HasBasinShapefile, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}"
+                       Margin="5"
+                       HorizontalAlignment="Center" />
+        </StackPanel>
+        <ListView ItemsSource="{Binding Preview}"
+                  Style="{x:Null}"
+                  Grid.Row="1">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="BorderThickness"
+                            Value="0" />
+                    <Setter Property="Margin"
+                            Value="0" />
+                    <Setter Property="Padding"
+                            Value="0" />
+                    <Setter Property="Background"
+                            Value="Transparent" />
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Stretch" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                <ContentPresenter />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        <TextBlock Text="{Binding AddMessage}"
+                   Grid.Row="2"
+                   Margin="5"
+                   HorizontalAlignment="Center" />
+    </Grid>
+</UserControl>

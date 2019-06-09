@@ -1,0 +1,140 @@
+<UserControl x:Class="Fhi.Controls.Infrastructure.SplashView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Fhi.Controls.Infrastructure"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:SplashViewModel}"
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition Height="20" />
+            <RowDefinition />
+            <RowDefinition Height="120" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0"
+              Grid.Column="0"
+              Background="#ffe7e7e8">
+            <Button Command="{Binding BackstageCommand}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    ToolTip="File"
+                    Margin="2"
+                    Foreground="Black"
+                    Style="{DynamicResource MaterialDesignFlatButton}">
+                <materialDesign:PackIcon Kind="HamburgerMenu" />
+            </Button>
+            <Rectangle Width="150"
+                       Margin="5,0,22,0"
+                       Fill="{StaticResource FhiLogoBrush}"
+                       HorizontalAlignment="Right" />
+        </Grid>
+        <Grid Grid.Row="1"
+              Background="#ff8ac7f3" />
+        <Grid Grid.Row="2"
+              Background="#ff5480b9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70*" />
+                <ColumnDefinition Width="30*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0"
+                        Margin="20,5,0,5">
+                <TextBlock Foreground="White"
+                           TextWrapping="Wrap">
+                    <Run>
+                        The
+                    </Run>
+                    <Run FontWeight="Bold">
+                        Freshwater Health Index (FHI) toolbox
+                    </Run>
+                    <Run>
+                        facilitates the implementation of an FHI assessment through a set of indicators that
+                        transparently assess the health of freshwater systems, quantifying
+                        and mapping the benefits that freshwater naturally provides.
+                    </Run>
+                    <LineBreak />
+                    <LineBreak />
+                    <Run FontWeight="Bold">
+                        The FHI assessment incorporates three main components:
+                    </Run>
+                </TextBlock>
+                <TextBlock Foreground="White"
+                           TextWrapping="Wrap"
+                           Margin="20,0">
+                    <Run FontWeight="Bold">
+                        Ecosystem Vitality:
+                    </Run>
+                    <Run>
+                        The integrity and functioning of the ecosystem itself.
+                    </Run>
+                    <LineBreak />
+                    <Run FontWeight="Bold">
+                        Ecosystem Services:
+                    </Run>
+                    <Run>
+                        The benefits to people provided by a freshwater ecosystem.
+                    </Run>
+                    <LineBreak />
+                    <Run FontWeight="Bold">
+                        Governance &amp; Stakeholders:
+                    </Run>
+                    <Run>
+                        The structures and processes by which people make decisions related to water resources.
+                    </Run>
+                    <LineBreak />
+                </TextBlock>
+                <TextBlock Foreground="White"
+                           TextWrapping="Wrap">
+                    <Run>
+                        Each component is assessed with a suite of measurable indicators.
+                        Evaluation of the indicators requires hydrologic and water allocation models,
+                        ecosystem service models, valuation techniques and stakeholder surveys. Data is
+                        transformed into commonly scaled indicators (on a 0-100 scale), providing a
+                        baseline diagnosis of basin health. The toolbox assists in the process of
+                        entering and organizing data for indicator calculations.
+                    </Run>
+                </TextBlock>
+            </StackPanel>
+            <Button Content="Import Basin Shapefile"
+                    Grid.Column="1"
+                    Width="180"
+                    Command="{Binding BasinShapefileCommand}"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+        </Grid>
+        <Grid Grid.Row="3"
+              Background="#ff5993c9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="10"
+                       TextWrapping="Wrap"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="16"
+                       Grid.Column="0">
+                <Hyperlink RequestNavigate="Hyperlink_RequestNavigate"
+                           NavigateUri="http://www.freshwaterhealthindex.org/user-manual"
+                           Foreground="White">
+                    Access Manuals
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock Margin="10"
+                       TextWrapping="Wrap"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="16"
+                       Grid.Column="1">
+                <Hyperlink RequestNavigate="Hyperlink_RequestNavigate"
+                           NavigateUri="http://www.freshwaterhealthindex.org/basin-reports"
+                           Foreground="White">
+                    Case Studies
+                </Hyperlink>
+            </TextBlock>
+        </Grid>
+    </Grid>
+</UserControl>

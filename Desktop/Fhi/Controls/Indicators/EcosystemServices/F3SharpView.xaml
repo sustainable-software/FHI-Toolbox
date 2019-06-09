@@ -1,0 +1,384 @@
+<UserControl x:Class="Fhi.Controls.Indicators.EcosystemServices.F3SharpView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Fhi.Controls.Indicators.EcosystemServices"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mvvm="clr-namespace:Fhi.Controls.MVVM"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:F3SharpViewModel}"
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+    <UserControl.Resources>
+        <mvvm:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <mvvm:DataContextSpy x:Key="DataContextSpy" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <TextBlock Text="Name:"
+                       Margin="5"
+                       VerticalAlignment="Center" />
+            <TextBox Text="{Binding Su.Name}"
+                     Width="100"
+                     Margin="5"
+                     VerticalContentAlignment="Center" />
+            <TextBlock Text="Units:"
+                       Margin="20,5,5,5"
+                       VerticalAlignment="Center" />
+            <TextBox Text="{Binding Su.Units}"
+                     Width="100"
+                     Margin="5"
+                     VerticalContentAlignment="Center" />
+        </StackPanel>
+        <!--
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="0"
+                    HorizontalAlignment="Right">
+            <TextBlock Text="Year:"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+            <ComboBox SelectedItem="{Binding SelectedYear}"
+                      ItemsSource="{Binding Years}"
+                      Margin="5"
+                      VerticalContentAlignment="Center" />
+        </StackPanel>
+        -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*" />
+                <ColumnDefinition Width="25*" />
+                <ColumnDefinition Width="30*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Data"
+                           HorizontalAlignment="Center"
+                           Margin="0"
+                           FontSize="14"
+                           FontWeight="DemiBold" />
+                <Button Grid.Row="0"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        ToolTip="Paste single column of numerical data from Excel or a text file"
+                        Padding="0"
+                        Margin="2"
+                        HorizontalAlignment="Left"
+                        Command="{Binding PasteCommand}">
+                    <materialDesign:PackIcon Kind="ContentPaste"
+                                             Height="21"
+                                             Width="21" />
+                </Button>
+                <DataGrid Margin="2"
+                          Grid.Row="1"
+                          ItemsSource="{Binding Su.Data}"
+                          CanUserSortColumns="True"
+                          CanUserAddRows="False"
+                          AutoGenerateColumns="False"
+                          materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+                          materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Time, StringFormat=d}"
+                                            IsReadOnly="True"
+                                            Header="Time"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTextColumn Binding="{Binding Value}"
+                                            IsReadOnly="False"
+                                            Header="Value"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Button Command="{Binding Path=DataContext.RemoveTimestepCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                                CommandParameter="{Binding}"
+                                                ToolTip="Remove this timestep from the assessment"
+                                                Margin="0"
+                                                Padding="0"
+                                                Height="20"
+                                                Width="20"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="Close" />
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Metrics"
+                           HorizontalAlignment="Center"
+                           Margin="0"
+                           Grid.Row="0"
+                           FontSize="14"
+                           FontWeight="DemiBold" />
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Grid.Row="1">
+                    <TextBlock Text="Non-compliance if data is"
+                               Margin="5,0"
+                               VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{Binding Objectives}"
+                              Margin="5,0"
+                              SelectedItem="{Binding SelectedObjective}"
+                              VerticalContentAlignment="Center"
+                              Visibility="{Binding CanChangeObjective, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <TextBlock Text="{Binding SelectedObjective}"
+                               Margin="5,0"
+                               VerticalAlignment="Center"
+                               Visibility="{Binding CanChangeObjective, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}" />
+                    <TextBlock Text="metric."
+                               Margin="5,0"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+                <DataGrid Margin="2"
+                          Grid.Row="2"
+                          ItemsSource="{Binding Su.Objective.Metrics}"
+                          Visibility="{Binding RangeMetric, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}"
+                          CanUserSortColumns="True"
+                          CanUserAddRows="False"
+                          AutoGenerateColumns="False"
+                          materialDesign:DataGridAssist.CellPadding="5 3 3 3"
+                          materialDesign:DataGridAssist.ColumnHeaderPadding="3">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Start, StringFormat=d}"
+                                            IsReadOnly="True"
+                                            Header="Start"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTextColumn Binding="{Binding End, StringFormat=d}"
+                                            IsReadOnly="True"
+                                            Header="End"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTextColumn Binding="{Binding Value}"
+                                            IsReadOnly="False"
+                                            Header="Value"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Button Command="{Binding Path=DataContext.RemoveMetricCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                                CommandParameter="{Binding}"
+                                                ToolTip="Remove this metric from the assessment"
+                                                Margin="0"
+                                                Padding="0"
+                                                Height="20"
+                                                Width="20"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="Close" />
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid Margin="2"
+                          Grid.Row="2"
+                          ItemsSource="{Binding Su.Objective.Metrics}"
+                          Visibility="{Binding RangeMetric, Converter={StaticResource BooleanToVisibilityConverter}}"
+                          CanUserSortColumns="True"
+                          CanUserAddRows="False"
+                          AutoGenerateColumns="False"
+                          materialDesign:DataGridAssist.CellPadding="5 3 3 3"
+                          materialDesign:DataGridAssist.ColumnHeaderPadding="3">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Start, StringFormat=d}"
+                                            IsReadOnly="True"
+                                            Header="Start"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTextColumn Binding="{Binding End, StringFormat=d}"
+                                            IsReadOnly="True"
+                                            Header="End"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTextColumn Binding="{Binding Minimum}"
+                                            IsReadOnly="False"
+                                            Header="Min"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTextColumn Binding="{Binding Maximum}"
+                                            IsReadOnly="False"
+                                            Header="Max"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Button Command="{Binding Path=DataContext.RemoveMetricCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                                CommandParameter="{Binding}"
+                                                ToolTip="Remove this metric from the assessment"
+                                                Margin="0"
+                                                Padding="0"
+                                                Height="20"
+                                                Width="20"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="Close" />
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Grid.Row="3"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                    <TextBlock>
+            <Run Text="Non-compliant timesteps:" />
+            <Run Text="{Binding Su.NonCompliantTimesteps}" /></TextBlock>
+                    <TextBlock>
+            <Run Text="Total excursions:" />
+            <Run Text="{Binding Su.TotalExcursions}" /></TextBlock>
+                </StackPanel>
+                <Button Command="{Binding ApplyMetricsCommand}"
+                        Grid.Row="3"
+                        ToolTip="Apply these metrics to all spatial units with matching name and units."
+                        Foreground="Black"
+                        Padding="3"
+                        Style="{DynamicResource MaterialDesignFlatButton}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom">
+                    <materialDesign:PackIcon Kind="ContentCopy" />
+                </Button>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <GroupBox Grid.Row="0"
+                          Margin="2,17,2,2">
+                    <GroupBox.Header>
+                        <Grid>
+                            <TextBlock Text="Add Data"
+                                       HorizontalAlignment="Left" />
+                            <materialDesign:PackIcon Kind="ArrowLeft"
+                                                     HorizontalAlignment="Center" />
+                        </Grid>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <DatePicker SelectedDate="{Binding Timestep.Time}"
+                                            Margin="2" />
+                                <TextBox Text="{Binding Timestep.Value}"
+                                         VerticalContentAlignment="Center"
+                                         Margin="2" />
+                            </StackPanel>
+                            <Button Content="Add Timestep"
+                                    Command="{Binding AddTimestepCommand}"
+                                    Margin="2"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Right"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+                        </Grid>
+                        <Grid>
+                            <Button Content="Add Full Year"
+                                    Command="{Binding AddYearCommand}"
+                                    Margin="2"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+                            <!--
+              <Button Content="Import..."
+                      Margin="2"
+                      HorizontalAlignment="Right"
+                      Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+                -->
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Grid.Row="1"
+                          Margin="2">
+                    <GroupBox.Header>
+                        <Grid>
+                            <TextBlock Text="Add Metric"
+                                       HorizontalAlignment="Left" />
+                            <materialDesign:PackIcon Kind="ArrowRight"
+                                                     HorizontalAlignment="Center" />
+                        </Grid>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Start"
+                                               HorizontalAlignment="Center"
+                                               Grid.Row="0"
+                                               Grid.Column="0" />
+                                    <TextBlock Text="End"
+                                               HorizontalAlignment="Center"
+                                               Grid.Row="0"
+                                               Grid.Column="1" />
+                                    <DatePicker SelectedDate="{Binding Metric.Start}"
+                                                Grid.Column="0"
+                                                Grid.Row="1"
+                                                Margin="2" />
+                                    <DatePicker SelectedDate="{Binding Metric.End}"
+                                                Grid.Column="1"
+                                                Grid.Row="1"
+                                                Margin="2" />
+                                </Grid>
+                                <TextBox Text="{Binding Metric.Value}"
+                                         VerticalContentAlignment="Center"
+                                         Margin="2"
+                                         Visibility="{Binding RangeMetric, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}" />
+                                <StackPanel Orientation="Horizontal"
+                                            Visibility="{Binding RangeMetric, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock Text="Min:"
+                                               Margin="2"
+                                               VerticalAlignment="Center" />
+                                    <TextBox Text="{Binding Metric.Minimum}"
+                                             VerticalContentAlignment="Center"
+                                             Width="75"
+                                             Margin="2" />
+                                    <TextBlock Text="Max:"
+                                               Margin="2"
+                                               VerticalAlignment="Center" />
+                                    <TextBox Text="{Binding Metric.Maximum}"
+                                             VerticalContentAlignment="Center"
+                                             Width="75"
+                                             Margin="2" />
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                        <Button Content="Add Metric"
+                                Command="{Binding AddMetricCommand}"
+                                Margin="2"
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

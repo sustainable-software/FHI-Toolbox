@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="Fhi.Controls.Indicators.EcosystemVitality.LandCoverTableView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Fhi.Controls.Indicators.EcosystemVitality"
+             xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             xmlns:visualizationToolkit="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             xmlns:primitives="clr-namespace:System.Windows.Controls.DataVisualization.Charting.Primitives;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:LandCoverTableViewModel}"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <DataGrid ItemsSource="{Binding Table}"
+                  Grid.Column="0"
+                  CanUserSortColumns="False"
+                  CanUserAddRows="False"
+                  AutoGenerateColumns="False"
+                  HorizontalScrollBarVisibility="Disabled"
+                  HorizontalAlignment="Stretch">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap"
+                                           TextAlignment="Center"
+                                           Text="{Binding}" />
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Degree of naturalness / Vegetation"
+                                    Binding="{Binding Category}"
+                                    IsReadOnly="True"
+                                    Width="*"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping"
+                                    Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="% Coverage"
+                                    Binding="{Binding Area, StringFormat=N1}"
+                                    IsReadOnly="False"
+                                    Width="75"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping"
+                                    Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <chartingToolkit:Chart Grid.Column="1">
+            <chartingToolkit:Chart.Template>
+                <ControlTemplate TargetType="{x:Type chartingToolkit:Chart}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="Transparent"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="15"
+                                       FontSize="16"
+                                       Text="Land Cover" />
+                            <primitives:EdgePanel x:Name="ChartArea"
+                                                  Grid.Row="1"
+                                                  Style="{TemplateBinding ChartAreaStyle}">
+                                <Grid Panel.ZIndex="-1"
+                                      Style="{TemplateBinding PlotAreaStyle}" />
+                                <Border Panel.ZIndex="10"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="1" />
+                            </primitives:EdgePanel>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </chartingToolkit:Chart.Template>
+            <chartingToolkit:Chart.LegendStyle>
+                <Style TargetType="visualizationToolkit:Legend">
+                    <Setter Property="Width"
+                            Value="0" />
+                </Style>
+            </chartingToolkit:Chart.LegendStyle>
+            <chartingToolkit:Chart.Series>
+                <chartingToolkit:PieSeries Title="Land Cover"
+                                           ItemsSource="{Binding Table}"
+                                           DependentValueBinding="{Binding Path=Area}"
+                                           IndependentValueBinding="{Binding Path=Category}">
+                </chartingToolkit:PieSeries>
+            </chartingToolkit:Chart.Series>
+        </chartingToolkit:Chart>
+    </Grid>
+</UserControl>

@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="Fhi.Controls.Indicators.Governance.QuestionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Fhi.Controls.Indicators.Governance"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:governance="clr-namespace:FhiModel.Governance;assembly=FhiModel"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:QuestionViewModel}"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center"
+                   Grid.Row="0"
+                   FontSize="14">
+            <Run Text="Questions for" />
+            <Run Text="{Binding Indicator.Name}" /></TextBlock>
+        <Button Command="{Binding BackCommand}"
+                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                Grid.Row="0"
+                Height="25"
+                Width="25"
+                Margin="5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+            <materialDesign:PackIcon Kind="ArrowLeft" />
+        </Button>
+        <ListView ItemsSource="{Binding Questions}"
+                  Grid.Row="1"
+                  Margin="5">
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="{x:Type governance:Question}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0">
+                            <Run Text="{Binding Name}" />
+                            <LineBreak />
+                            <Run Text="Score:"></Run>
+                            <Run Text="{Binding Score}" /></TextBlock>
+                        <Expander Grid.Row="1"
+                                  Margin="10"
+                                  Header="Answers"
+                                  Width="400"
+                                  HorizontalAlignment="Left">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150" />
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0"
+                                           Grid.Row="0"
+                                           Text="User"
+                                           HorizontalAlignment="Center" />
+                                <TextBlock Grid.Column="1"
+                                           Grid.Row="0"
+                                           Text="Answer"
+                                           HorizontalAlignment="Center" />
+                                <TextBlock Grid.Column="2"
+                                           Grid.Row="0"
+                                           Text="Comment"
+                                           HorizontalAlignment="Center" />
+                                <ListView ItemsSource="{Binding Answers}"
+                                          Grid.Column="0"
+                                          Grid.Row="1"
+                                          Grid.ColumnSpan="3"
+                                          Height="150">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type governance:Answer}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="150" />
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding User}"
+                                                           Grid.Column="0" />
+                                                <TextBlock Text="{Binding Value}"
+                                                           Grid.Column="1"
+                                                           HorizontalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Comment}"
+                                                           Grid.Column="2" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Grid>
+                        </Expander>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>

@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="Fhi.Controls.Indicators.Core.OverrideView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Fhi.Controls.Indicators.Core"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mvvm="clr-namespace:Fhi.Controls.MVVM"
+             xmlns:utils="clr-namespace:Fhi.Controls.Utils"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance local:OverrideViewModel}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <mvvm:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <utils:IndicatorColorConverter x:Key="IndicatorColorConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <TreeView ItemsSource="{Binding Indicators}"
+                  Margin="5"
+                  materialDesign:RippleAssist.IsDisabled="True">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Indicator.Name, Mode=OneWay}"
+                                   Width="150"
+                                   Margin="5"
+                                   Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Visibility="{Binding Overriden, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
+                        <TextBlock FontWeight="Bold"
+                                   ToolTip="{Binding Indicator.OverrideComment}"
+                                   Foreground="{Binding Indicator.UserOverride, Converter={StaticResource IndicatorColorConverter}}"
+                                   Width="150"
+                                   Margin="5"
+                                   Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Visibility="{Binding Overriden, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                            <Run Text="{Binding Indicator.Name, Mode=OneWay}"/><Run Text=":"/>
+                            <Run Text="{Binding Indicator.UserOverride}"/>
+                        </TextBlock>
+                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                ToolTip="Override indicator value"
+                                Command="{Binding OverrideCommand}"
+                                Grid.Column="1"
+                                Margin="5">
+                            <materialDesign:PackIcon Kind="RedoVariant"
+                                                     Height="20"
+                                                     Width="20" />
+                        </Button>
+                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                ToolTip="Clear override"
+                                Command="{Binding ClearCommand}"
+                                Grid.Column="2"
+                                Margin="5"
+                                Visibility="{Binding Overriden, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <materialDesign:PackIcon Kind="Close"
+                                                     Height="20"
+                                                     Width="20" />
+                        </Button>
+                        
+                    </Grid>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+    </Grid>
+</UserControl>

@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="Fhi.Controls.Infrastructure.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Fhi.Controls.Infrastructure"
+             xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
+             xmlns:utils="clr-namespace:Fhi.Controls.Utils"
+             xmlns:network="clr-namespace:Fhi.Controls.Network"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:HomeViewModel}"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0"
+              Grid.Column="0"
+              Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal">
+                <Button Command="{Binding BackstageCommand}"
+                        ToolTip="File"
+                        Padding="5"
+                        Margin="5,0,0,0"
+                        Foreground="Black"
+                        Style="{DynamicResource MaterialDesignFlatButton}">
+                    <materialDesign:PackIcon Kind="HamburgerMenu" />
+                </Button>
+                <Button Command="{Binding CoreCommand}"
+                        ToolTip="Modify indicator weights and overrides."
+                        Padding="5"
+                        Margin="0"
+                        Foreground="Black"
+                        Style="{DynamicResource MaterialDesignFlatButton}">
+                    <materialDesign:PackIcon Kind="Pencil"/>
+                </Button>
+                <Button Command="{Binding ReportCommand}"
+                        ToolTip="Generate a Microsoft Word document report for this assessment."
+                        Padding="5"
+                        Margin="0"
+                        Foreground="Black"
+                        Style="{DynamicResource MaterialDesignFlatButton}">
+                    <materialDesign:PackIcon Kind="FileDocument" />
+                </Button>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center"
+                        Margin="5">
+                <TextBlock Text="{Binding Model.Attributes.Title}"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+                <TextBlock HorizontalAlignment="Center">
+                    <Run Text="{Binding Model.Attributes.AssessmentYear}" />
+                </TextBlock>
+            </StackPanel>
+            <Rectangle Width="150"
+                       Margin="5,0,22,0"
+                       Fill="{StaticResource FhiLogoBrush}"
+                       HorizontalAlignment="Right" />
+            
+        </Grid>
+        <Grid Grid.Column="0"
+              Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <utils:PillarIndicator Grid.Row="0"
+                                       HorizontalAlignment="Center"
+                                       Command="{Binding EcosystemVitalityCommand}"
+                                       IndicatorName="Ecosystem&#x0a;Vitality"
+                                       Indicator="{Binding Model.EcosystemVitality}"
+                                       ContextHelp="Ecosystem_Viltality/Guidelines.html" />
+                <utils:PillarIndicator Grid.Row="1"
+                                       HorizontalAlignment="Center"
+                                       Command="{Binding EcosystemServicesCommand}"
+                                       IndicatorName="Ecosystem&#x0a;Services"
+                                       Indicator="{Binding Model.EcosystemServices}"
+                                       ContextHelp="Ecosystem_Services/Provisioning_and_Regulating/Background.html" />
+                <utils:PillarIndicator Grid.Row="2"
+                                       HorizontalAlignment="Center"
+                                       Command="{Binding GovernanceCommand}"
+                                       IndicatorName="Governance"
+                                       Indicator="{Binding Model.Governance}"
+                                       ContextHelp="Governance_and_Stakeholders/Definitions.html" />
+                
+            </Grid>
+        </Grid>
+        <network:BasinMapView DataContext="{Binding BasinMapViewModel}"
+                              Viewpoint="{Binding Viewpoint}"
+                              Grid.Column="1"
+                              Grid.Row="1" />
+    </Grid>
+</UserControl>

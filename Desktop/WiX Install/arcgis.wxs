@@ -1,0 +1,699 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLFOLDER">
+            <Directory Id="dir050D309F8F8A823882F1B98D60494028" Name="ArcGisRuntime100.4">
+                <Directory Id="dirD8DC8C1F67CD0C6D3110F4D3C09E5990" Name="client64">
+                    <Component Id="cmp38CCDE67869885436C69B163EDADE8D6" Guid="*">
+                        <File Id="fil5CBEAB52165A7CFF88D947C1917D4B11" KeyPath="yes" Source="$(var.ArcGis)\client64\runtimecore.dll" />
+                    </Component>
+                    <Component Id="cmp4F67DEC95D132BD161E280B5CD98F8AF" Guid="*">
+                        <File Id="fil73DEC253ADF50678EA52A1795E1FB077" KeyPath="yes" Source="$(var.ArcGis)\client64\RuntimeCoreNet.dll" />
+                    </Component>
+                </Directory>
+                <Directory Id="dirF0DC4181EA2A9375DE1E0F08758D51A8" Name="resources">
+                    <Directory Id="dir75C66FF046FC61246AB21C69D9EC9669" Name="shaders">
+                        <Component Id="cmpF96EC9B6F8619CEAE9915550EDCBDA1F" Guid="*">
+                            <File Id="fil3A62387BB3E07D8C78F86EED4FDC1FA8" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\atmosphere_accurate_ps.cso" />
+                        </Component>
+                        <Component Id="cmp17A7D933E68ABE73760CDA707F06D62C" Guid="*">
+                            <File Id="filCB6C2011253D6E8DEBEDCD442588538F" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\atmosphere_accurate_vs.cso" />
+                        </Component>
+                        <Component Id="cmp543762F856F88AE465E3DEED1B2A0487" Guid="*">
+                            <File Id="fil63C7A5FB6686F5D606CFF4F027C44A8F" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\atmosphere_textured_ps.cso" />
+                        </Component>
+                        <Component Id="cmpBC25F64010930D1F60186423CBCA0D00" Guid="*">
+                            <File Id="fil6C12024C038ECE8105172E0597E3E657" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\atmosphere_textured_vs.cso" />
+                        </Component>
+                        <Component Id="cmpD0E9596C3AA6B0D728490DD378F35992" Guid="*">
+                            <File Id="fil0232D9E7C17BEABA900DAE497081797C" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\frustum_world_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp76E0D868AA5517C4239F6AD81410A581" Guid="*">
+                            <File Id="fil62E96232452F72717AE9EBAF7466DDBC" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\frustum_world_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmp1AE06CBD8995E80DE68856D0571CC9A3" Guid="*">
+                            <File Id="fil85F82402EA6FADF3354471D43D9F4152" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\image_renderer_ps.cso" />
+                        </Component>
+                        <Component Id="cmp1DDF9798209BD616CA566B1D1696E2C6" Guid="*">
+                            <File Id="filB71A5B120581366897979E7C4F6687A0" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\image_renderer_vs.cso" />
+                        </Component>
+                        <Component Id="cmp38E4E4F26996FA7A58EEC535EFC1D557" Guid="*">
+                            <File Id="fil0CDFE7FEBFBE812AD44C5FEE55F1C2E7" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\magnifier_ps.cso" />
+                        </Component>
+                        <Component Id="cmpE16004BF129CD19B169745F931512EB6" Guid="*">
+                            <File Id="fil73F43989505F1285ACB2D25B28CBBBF7" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\magnifier_vs.cso" />
+                        </Component>
+                        <Component Id="cmp7E16A8D58A2061B56349F21DC128CF74" Guid="*">
+                            <File Id="fil35C66809939A317EF3EA9AD84F711825" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\measure_line_world_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp69BAAD1510537129C0E56749543E91A5" Guid="*">
+                            <File Id="fil220CC6B3C01F659A3DD4A25A482F5DD5" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\measure_line_world_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmpAC003E3985087A52421919C6DD135024" Guid="*">
+                            <File Id="fil7813116BBE5A386DF1630242C2E2A8C1" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\offscreen_buffer_ps.cso" />
+                        </Component>
+                        <Component Id="cmp76991A7AC8DFB1ACC8A6EED86AEB1D12" Guid="*">
+                            <File Id="filFB9079CAC1D6002DCFBB57187F1DE484" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\offscreen_buffer_vs.cso" />
+                        </Component>
+                        <Component Id="cmp09C8E1B2873287A6BDB7A0B00D55E906" Guid="*">
+                            <File Id="filFF6B2A1FC23CA401C33BB88075B9A9FC" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\point_billboard_depth_ps.cso" />
+                        </Component>
+                        <Component Id="cmp9712A31A0E8EAF06123D6B368B2B3621" Guid="*">
+                            <File Id="fil0B8AE2C4D842A13EE08AF5D4115C7CA8" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\point_billboard_depth_vs.cso" />
+                        </Component>
+                        <Component Id="cmp0FB33AF83604C393D10CE1027C3960FA" Guid="*">
+                            <File Id="filB7EA3D6CC315F9065FE7BDCAD667235F" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\point_billboard_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp7FFE142473BBCABDB07BBD130F30E710" Guid="*">
+                            <File Id="fil207C81212E6F5F82B6FC0648029FDA07" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\point_billboard_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmpD820F7B48900920F2DB80ABA1E9D3D4E" Guid="*">
+                            <File Id="fil60AB89EFA0A324E5CF412AADA3BDF3DF" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\polygon_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp77193C4F2F8E5DD36CAF78B693B8D549" Guid="*">
+                            <File Id="fil1A83B54096A10C1E7E61BEE8E4C4AF49" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\polygon_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmp573AC34FECAE613568CA21B4ECC3AD69" Guid="*">
+                            <File Id="fil0B8D315FFB1454EE9920994F5C9F3D62" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\polygon_outline_overlay_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp6D103AED2A8AE811B938203E34EEEF0E" Guid="*">
+                            <File Id="fil5525E21D805552BD82C45BAE86B189EC" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\polygon_outline_overlay_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmp47D03B65795A6AEF357AD33102BEC7C7" Guid="*">
+                            <File Id="filB862AAFD30EF461961466BAD4A8B9C0D" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\polygon_overlay_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp81F6C338A7EFD9E6CE3D40F1CCD7D6F9" Guid="*">
+                            <File Id="fil64029DB2F33CE0B00961E5233CFABA38" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\polygon_overlay_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmpDDC42C543A09F6E003FEBEFDDF4930A8" Guid="*">
+                            <File Id="fil584F4329F13F73ACFBD909055975AF73" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\polygon_world_depth_ps.cso" />
+                        </Component>
+                        <Component Id="cmpAECFE07DF44DF60CF89042755AB64C85" Guid="*">
+                            <File Id="fil6A1F75451846052F8D287B798F812917" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\polygon_world_depth_vs.cso" />
+                        </Component>
+                        <Component Id="cmp572734B67BD752AA335DD26823D8F00B" Guid="*">
+                            <File Id="filCDD6AC1E46D5767930ACA058C22457D3" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\polyline_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp327E989EC6817DFE124C8F95A02CC4ED" Guid="*">
+                            <File Id="fil2AAFD658569FDC20599D102BD206660B" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\polyline_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmp82CA66055B4561B2F537EB62A8761C03" Guid="*">
+                            <File Id="fil8F4717B460D59B0649EDFAA551AED788" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\polyline_overlay_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp79443DF2F28C829D5D96F725B573BF4C" Guid="*">
+                            <File Id="filBB2FCF50081AE49D6FF4D52CA0846C21" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\polyline_world_depth_ps.cso" />
+                        </Component>
+                        <Component Id="cmp88E51407FEACBBF1F1E19E08AC544091" Guid="*">
+                            <File Id="filDEA1A1607E423D6ECFE58C9F55A6A1AF" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\polyline_world_depth_vs.cso" />
+                        </Component>
+                        <Component Id="cmp13A130D88E7199C956ADBFD4983537EA" Guid="*">
+                            <File Id="filCD3EA57946981D6490A10E481B39A93B" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\post_process_quad_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmpC21B1D1A77AEECCD0685EBAC650CF467" Guid="*">
+                            <File Id="fil89E5C877A270F9ED8156FC4ECE9A601E" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\post_process_viewshed_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmpAED35533847C79581997B0B50E2A0453" Guid="*">
+                            <File Id="fil1729D2B2BF092F14C0A882F6B5EFA952" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\screen_image_renderer_ps.cso" />
+                        </Component>
+                        <Component Id="cmp268E82A67D94591665DA2525C512FC18" Guid="*">
+                            <File Id="fil020D7420BCD1D4F0D55C9F676467FA6E" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\screen_image_renderer_vs.cso" />
+                        </Component>
+                        <Component Id="cmp1B9BAC026B282D6F1627DAC44CA915B9" Guid="*">
+                            <File Id="filDBF3EF2BAD85F2581CCFB51BF74FFFED" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\screen_overlay_ps.cso" />
+                        </Component>
+                        <Component Id="cmpA6D832F5F37DA6D12FC77F197478E436" Guid="*">
+                            <File Id="fil33B6D52BA3C10E0D8F87CD75D92A6549" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\screen_overlay_vs.cso" />
+                        </Component>
+                        <Component Id="cmp6DCC3FAA32B05D71361794EDC9D16B83" Guid="*">
+                            <File Id="filBAF92E8D826ED6C885C4E9A61908E8EF" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_area_pick_ps.cso" />
+                        </Component>
+                        <Component Id="cmpD8500C6070D5274863CB2FE2AC16E6FB" Guid="*">
+                            <File Id="fil58EFCFB76BD7C6AE029710DE171A7249" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_area_pick_vs.cso" />
+                        </Component>
+                        <Component Id="cmp36E9E961634A314BAEE4475F69F8B5C2" Guid="*">
+                            <File Id="fil1EBC6C984B0F87AC03CF7A52CA971126" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_area_ps.cso" />
+                        </Component>
+                        <Component Id="cmpCAD532231A7F17F696731E169CE64909" Guid="*">
+                            <File Id="filE18D6F1ABE8A77FAD59686D0B955FDE6" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_area_vs.cso" />
+                        </Component>
+                        <Component Id="cmpDF541E0096F046617C6DE56F553497CB" Guid="*">
+                            <File Id="filCAEA1B65FED765F29049836E0322F403" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_line_halo_ps.cso" />
+                        </Component>
+                        <Component Id="cmpAFF60912019D5ADA49DB4A7C015B503A" Guid="*">
+                            <File Id="filE89356D56BF3EC19AD336EB6E7C4B53B" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_line_halo_vs.cso" />
+                        </Component>
+                        <Component Id="cmp127D428B86716613F92182EC3FD59A4E" Guid="*">
+                            <File Id="fil80A6FBC1AD3DB37ABC54FFFB76546DC4" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_line_pick_ps.cso" />
+                        </Component>
+                        <Component Id="cmp724302767AB8571C4416F1DB99775E4D" Guid="*">
+                            <File Id="filEDD77AF78E6517ECFCE08353F8BC9492" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_line_pick_vs.cso" />
+                        </Component>
+                        <Component Id="cmp1B69FAF845DB5FFF20DB542068DDF3FE" Guid="*">
+                            <File Id="fil78F97B6575CAD23D15B2BC03E793A0F2" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_line_ps.cso" />
+                        </Component>
+                        <Component Id="cmp7C5DCA7D56EEEADCF4EB437768623ABC" Guid="*">
+                            <File Id="fil6EFE6FE9D6D2BEFAF44789158F2286A2" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_line_vs.cso" />
+                        </Component>
+                        <Component Id="cmp87698C6CD516A269E169BA3FABDD4D02" Guid="*">
+                            <File Id="filEA2D3FA3D8D3DD27C3B07F6B888B4B4C" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_outlined_area_halo_ps.cso" />
+                        </Component>
+                        <Component Id="cmp39903CEA8E1910168D3E3DC1B0A4C84D" Guid="*">
+                            <File Id="fil1626C2C383ED12D4A7658508E2F1541F" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_outlined_area_halo_vs.cso" />
+                        </Component>
+                        <Component Id="cmp1412403AA5720823339ABEC2F882A78E" Guid="*">
+                            <File Id="fil507342F5EA269618117F31073002A99A" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_outlined_area_pick_ps.cso" />
+                        </Component>
+                        <Component Id="cmp9E4DBB17C9C2EA37029D6431D57BF8F4" Guid="*">
+                            <File Id="fil7ED9BFBBECE5E9CD81FD81D88D70E485" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_outlined_area_pick_vs.cso" />
+                        </Component>
+                        <Component Id="cmp1548B0CF7438AEE2181AA03F41B54207" Guid="*">
+                            <File Id="fil623C623B6FB7CE3FC21D9BD121AB9C75" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_outlined_area_ps.cso" />
+                        </Component>
+                        <Component Id="cmp7AFFBB1EB5F48A8C76BD42C7B31571E3" Guid="*">
+                            <File Id="fil4DE8B515A659349F2C525B5D28E9D410" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_outlined_area_vs.cso" />
+                        </Component>
+                        <Component Id="cmp4BD3821AF57878552A82C0CB8F236563" Guid="*">
+                            <File Id="fil64DD24CE978D511C5D6B1D2D647E0F3A" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_point_halo_ps.cso" />
+                        </Component>
+                        <Component Id="cmpAB68539E8187D288355E0B9D5FF75A8D" Guid="*">
+                            <File Id="fil6D806536972A55297C9C620A9D471C21" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_point_halo_vs.cso" />
+                        </Component>
+                        <Component Id="cmpF695E04DEAF67C84772ED7EA3CCB51DA" Guid="*">
+                            <File Id="fil9C450E0450B6F9A97D9E881D52E6E315" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_point_pick_ps.cso" />
+                        </Component>
+                        <Component Id="cmp0725598365E4A93597FBF713924EC8EC" Guid="*">
+                            <File Id="filC5D805AC7E4CA9D5FA3CCF6453424DB7" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_point_pick_vs.cso" />
+                        </Component>
+                        <Component Id="cmp9FD354442E7DCC152A44E565C9BBF581" Guid="*">
+                            <File Id="fil6A862DEAC4465170A1268EB38345A315" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_point_ps.cso" />
+                        </Component>
+                        <Component Id="cmp3F5173637693AA6E639B2FD2C04F4096" Guid="*">
+                            <File Id="filD35AE9BB5B66F30472A8E0815ACDA343" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_point_vs.cso" />
+                        </Component>
+                        <Component Id="cmpA854B8014CC615E11A9060A953122851" Guid="*">
+                            <File Id="filA5F6E86FFF371A815682CF99BFC34F67" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_sdf_point_halo_ps.cso" />
+                        </Component>
+                        <Component Id="cmp6631184F7615EE96363B1EDA0BC336FE" Guid="*">
+                            <File Id="filD5C63374E3BAA6EE55B31B5133C25623" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_sdf_point_halo_vs.cso" />
+                        </Component>
+                        <Component Id="cmp79824262E802E130A05A47541EE3ED11" Guid="*">
+                            <File Id="fil3EC565A00C5AFB08C4F4A2A226DBF4A8" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_sdf_point_pick_ps.cso" />
+                        </Component>
+                        <Component Id="cmp21379CD569F5D912A62AE8A90D06DF20" Guid="*">
+                            <File Id="fil646D267EDBFC79499DA10BA850090EEA" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_sdf_point_pick_vs.cso" />
+                        </Component>
+                        <Component Id="cmpF8153EF8C4B6B458E125B0FE0EF3A78D" Guid="*">
+                            <File Id="filA4BEB707138B5585DF76E9A5C02BCDE3" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_sdf_point_ps.cso" />
+                        </Component>
+                        <Component Id="cmp1F572E86B4AE7265EAF8484E073DA8B8" Guid="*">
+                            <File Id="fil0F3C463578F3C19090616BC0C3B5C966" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\seq_render_sdf_point_vs.cso" />
+                        </Component>
+                        <Component Id="cmpC792473468617D9B398B8FD4254F813F" Guid="*">
+                            <File Id="fil9929FD7143677E7184CB16500E7C1984" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\simple_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmpF3DF5B265F417F72481CAEFF64FD3CBD" Guid="*">
+                            <File Id="filE097CE6AF1D138DF74FD31DB967F1487" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\simple_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmp88E13325251FB168E6063DD6283666CD" Guid="*">
+                            <File Id="fil9F701819BD172878510B345692C31DC9" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\simple_grid_ps.cso" />
+                        </Component>
+                        <Component Id="cmp1EF887BC29EB63E010BC8B9E3D194AAA" Guid="*">
+                            <File Id="fil6749B34EB807E26A708087A5BACE917D" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\simple_grid_vs.cso" />
+                        </Component>
+                        <Component Id="cmpA8153EAA60711F508F7C192463090AE6" Guid="*">
+                            <File Id="fil3B593C6068D9578CABE90E8CC89D72EF" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\skybox_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp94B6D085700F0F02F6A9FA4F65C05C5C" Guid="*">
+                            <File Id="fil0DB24FA0784E18D6E9FCFE55F67F3C12" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\skybox_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmpBF35B236B5604B9A1F3E0A3B64409B06" Guid="*">
+                            <File Id="filCCD983EE6015CDB5C525AEDB45DF172A" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\star_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmpFE28382D5A4F49D3111D4076B1B72904" Guid="*">
+                            <File Id="filB59B2956E62B07E00D7500DCD754ECA9" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\star_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmp2B0BC416482F07FD44F684139CA28B81" Guid="*">
+                            <File Id="filE57B2F9752CD7B4E9E208DCC3FB2E6F7" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\texture_draw_instanced_ps.cso" />
+                        </Component>
+                        <Component Id="cmp2E9C5D8A0EA2BCDB4D248A19EA372C44" Guid="*">
+                            <File Id="fil07A728ABD7AAC2A65EA36EF7C1DD0038" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\texture_draw_instanced_vs.cso" />
+                        </Component>
+                        <Component Id="cmpBB9F21700B9177115D9AE0A338160B93" Guid="*">
+                            <File Id="fil3C0AF67CC1519C7988719FC2066D5E5A" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\texture_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp707E5C6BBAF4482F92163A9E6FAC3ADE" Guid="*">
+                            <File Id="fil90FD6F41EA5C53F45DFCEF9E97CD3B0D" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\texture_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmp3C3BB8D21373D21E8A18C87DFCCF2AF8" Guid="*">
+                            <File Id="fil493C2254034406BC7105257AB715681D" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\text_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp82536122F97F3AE78390808642E3AC6C" Guid="*">
+                            <File Id="fil9C74117BE80DE3F96E9B187EAFD8082F" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\text_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmp097A533A82AD8A8D6B926E4F3BFB966D" Guid="*">
+                            <File Id="fil3B546ADE479879B2C942E82D4AE2C625" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tex_coor_to_tex_coor_ps.cso" />
+                        </Component>
+                        <Component Id="cmpC3FB611F9E51377F0847069F7FC14F5F" Guid="*">
+                            <File Id="fil66FF1C3316A7C13281DDD8378B79A8EA" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tex_coor_to_tex_coor_vs.cso" />
+                        </Component>
+                        <Component Id="cmp2D7B6C4B6B77DE1F1E13518804AFE19B" Guid="*">
+                            <File Id="filA5D1DDACB7638AFAB5DD3DCB6B47BF48" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tex_quad_b8g8r8a8un_adv_ps.cso" />
+                        </Component>
+                        <Component Id="cmp57335C9D5755E899D22EC76EC83173B8" Guid="*">
+                            <File Id="fil4A3927BF2B70D949D09EBD046F22FF71" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tex_quad_b8g8r8a8un_custom_filter_ps.cso" />
+                        </Component>
+                        <Component Id="cmp41D6C12FFD5AD177F95C9065FF8FE94E" Guid="*">
+                            <File Id="filB7921BACBF077A4554233C1EF9037319" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tex_quad_b8g8r8a8un_ps.cso" />
+                        </Component>
+                        <Component Id="cmpB3369831AB7315A188B1A8C660A53586" Guid="*">
+                            <File Id="fil475EC0AB53372B337ED3B9CD85407865" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tex_quad_r16s_test_ps.cso" />
+                        </Component>
+                        <Component Id="cmp1BA9D1A0E2E192605CFA41EE0365FF0C" Guid="*">
+                            <File Id="fil5BA79F35A474A60664B44B8DC5F20F3C" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tex_quad_r16u_test_ps.cso" />
+                        </Component>
+                        <Component Id="cmpFD72A8B47A282E6044FCA8C838CE77EF" Guid="*">
+                            <File Id="fil43810E62757DF011A4878D17DEC744D7" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tex_quad_r32f_test_ps.cso" />
+                        </Component>
+                        <Component Id="cmp639097A148563C3942B3D1F6470E095C" Guid="*">
+                            <File Id="fil19CC7EC6B1045E8F384CCBD6B38DD0E8" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tex_quad_rxf_ps.cso" />
+                        </Component>
+                        <Component Id="cmpA8AB9D1F7166F14175092C8254A9FA68" Guid="*">
+                            <File Id="fil1960E42D4E0A72C6B931CFA052A05431" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tex_quad_rxs_ps.cso" />
+                        </Component>
+                        <Component Id="cmp9771F08A4FBD30F3D6A3E580DD4BABAB" Guid="*">
+                            <File Id="fil3E5E5D7AA1273B8055651F2C9C99994B" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tex_quad_rxu_ps.cso" />
+                        </Component>
+                        <Component Id="cmp4575E275946D3E9994BA00DDBDF7BBCE" Guid="*">
+                            <File Id="filE8014C0DB71E572DBA2643665544907C" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tex_quad_vs.cso" />
+                        </Component>
+                        <Component Id="cmp8BBECE0F286B58D96DC6D9991EFC8AA6" Guid="*">
+                            <File Id="filC49B169073A99D8E73AA5F322348C401" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tile_atmosphere_modifiers_phong_world_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp444AEF5C894F80E0DF0BB3B335943671" Guid="*">
+                            <File Id="fil0C1C982755BFF8FE3E94B9CAA8C31247" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tile_atmosphere_phongshadow_world_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp8CEEE72ADC20E37EB6CAD73E0745FDA2" Guid="*">
+                            <File Id="fil974C79473E6DD76856CAEF8BCF3D2183" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tile_atmosphere_phongshadow_world_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmpA3B4CA664A86C5211FCEA5FB325DC1A9" Guid="*">
+                            <File Id="filDDA78DDF73C4447CD2EF8F0B257D96F9" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tile_atmosphere_phong_world_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmpAA926EB7816A074C50EB13FE412F360B" Guid="*">
+                            <File Id="fil1D2AB94E097DF7DAA5B88ED111021F15" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tile_atmosphere_phong_world_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmp7F6028592EDEE2E57436DE9E35EED665" Guid="*">
+                            <File Id="fil377F41334B4E48ED374D9D86D0D265DF" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tile_draped_graphics_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmpCE8CE130404EE95165D2118D0F325297" Guid="*">
+                            <File Id="fil0098EED6E2DC0BBD4DBA5F25779188E3" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tile_draped_graphics_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmpE826D3D6E6539A6C1777AB6269E12136" Guid="*">
+                            <File Id="fil71DAFD6D663A8C00BB0BE86068B20CCD" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tile_ground_overlay_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmpCD25C7974F53465727D38E93546798A6" Guid="*">
+                            <File Id="filFC3BAFDEEDFC1C1AD2EC19C744102BA2" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tile_ground_overlay_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmp7A1DC1395EA72E29F985F653C8AD2C6C" Guid="*">
+                            <File Id="filCDE640CB085A4306D6F444ED6C26F05F" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tile_modifiers_phong_world_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp487A6D1DD903FCC1EAB07180CA5932B1" Guid="*">
+                            <File Id="fil3793AEFD51C1C2D7A3F424E5976E1858" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tile_phongshadow_world_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp6D46B869E772B2E00EEE1E7CF17E7885" Guid="*">
+                            <File Id="filBBEE0170DC3C62709AFD69381EF468F9" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tile_phongshadow_world_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmpBE2A6EAB30B9D77B8B0A982954576BBC" Guid="*">
+                            <File Id="filDC6F4D7FC30C506F4D5DDB9FD282D607" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tile_phong_world_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp3499A9F98C3AE915A02C00DA6107B055" Guid="*">
+                            <File Id="filD6D8663370F57F5B2E297FC9A12E18E7" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tile_phong_world_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmpD27655C5058916F23CD509FC2D537F02" Guid="*">
+                            <File Id="filCD8BDC2D109F63EB2D92FB3D16745765" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tile_world_depth_ps.cso" />
+                        </Component>
+                        <Component Id="cmp15139192FDC7AF134AD08AE3C1D5FF90" Guid="*">
+                            <File Id="fil30656C6D85EF5E2DDD1AC0541E5311DA" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\tile_world_depth_vs.cso" />
+                        </Component>
+                        <Component Id="cmp74C323EABCEC46964C2CDC2B4E2C2163" Guid="*">
+                            <File Id="filDC107764D1462B91BF51C6DA5E8657DF" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_color_phongshadow_world_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp234F418AF52AC907CFCAF7EEC262FB94" Guid="*">
+                            <File Id="fil96DAAE8D182E9D41831C1C1F8BB92B26" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_color_phongshadow_world_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmp3463CF9565D85609A54E64A8BD869DE2" Guid="*">
+                            <File Id="filF5888E44604748C47298B0CF79BE4D63" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_color_phongshadow_world_instance_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmp52A1609D085095F1526ABEE1894574E4" Guid="*">
+                            <File Id="fil5E258E43E753D87C0913A7CB598B5F9B" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_color_phong_world_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmpD83CC747B1D0C9B5778BA9688B0744FE" Guid="*">
+                            <File Id="fil6C9406CE37BCB3FC5291F91F93D6FBAE" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_color_phong_world_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmpBEF21035A81335D9C7AC7918C05B8521" Guid="*">
+                            <File Id="fil27E7A7F80681A6B629CF8A40F383EF57" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_color_phong_world_instance_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmpA1605095B6CB9128DB1B9635F72F1F96" Guid="*">
+                            <File Id="filF7D9018C3DA02EF2DC007B7AA921350C" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_outline_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp95946F71326575BEAF0E2FB8CCC59EFE" Guid="*">
+                            <File Id="fil8C58890E2A2E87212054CAA6BA0E22E6" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_outline_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmpC86886413F928C40171E9B46D1F3F281" Guid="*">
+                            <File Id="fil9690B70627E2568A36DB94BCC6093347" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_outline_instance_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmp44DBF728DCF331CF95070C33C5B34A04" Guid="*">
+                            <File Id="fil7EE51C2C765A299EBE2A3F66729E5499" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_texture_phongshadow_world_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmpEBFC2F6F1D158556EB5F52A4B444976E" Guid="*">
+                            <File Id="fil4504A3E4E83683052EE201B5719D8306" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_texture_phongshadow_world_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmpB75EF2EB849D62845C3291DDB7BA152E" Guid="*">
+                            <File Id="filFCC469268B33A0329CF6F587717D2C05" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_texture_phongshadow_world_instance_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmpCF1617FB5B585107A78A46EDC8A7D51A" Guid="*">
+                            <File Id="fil88D8AD01141A48C71BDFDD7652AECCF1" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_texture_phong_world_draw_ps.cso" />
+                        </Component>
+                        <Component Id="cmp594C037D8F3AB3044E102E31B9842E51" Guid="*">
+                            <File Id="fil5700517454FD6C8509EDE6F5BC4F1CEE" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_texture_phong_world_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmp3392EAB723CE2F74EA178AB11A41BC96" Guid="*">
+                            <File Id="fil35C30868D407E85B0EAE74ED968F2054" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_texture_phong_world_instance_draw_vs.cso" />
+                        </Component>
+                        <Component Id="cmpEC18511659F51D780C90271C652E9D8E" Guid="*">
+                            <File Id="filB6DD7D114FFFAEF887E8FA8136579EC7" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_texture_world_depth_ps.cso" />
+                        </Component>
+                        <Component Id="cmpEB99ED69DA1473BCC7CA4A4FCE98013B" Guid="*">
+                            <File Id="fil962FB74FC95115111C6602AAEA3B83F2" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_texture_world_depth_vs.cso" />
+                        </Component>
+                        <Component Id="cmp80E055463793151454D7D4A4E5088BE7" Guid="*">
+                            <File Id="filE479575E96375ED02BED12472593EED9" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_texture_world_instance_depth_vs.cso" />
+                        </Component>
+                        <Component Id="cmp218C78CA3357F2A2A84DA888CF6D177F" Guid="*">
+                            <File Id="fil3ED72ACC281C2DDD7D12EE642931E5BA" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_world_depth_ps.cso" />
+                        </Component>
+                        <Component Id="cmp09E7FB0370F60022C32C64E62615FD12" Guid="*">
+                            <File Id="fil596DD5922B08B711BE09C1C93A16AD74" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_world_depth_vs.cso" />
+                        </Component>
+                        <Component Id="cmpCBD3CA16A1234FD5EF0E07ABB13AD63D" Guid="*">
+                            <File Id="fil1888DBE6264A3C290B081AF5DB956D52" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\trianglemesh_world_instance_depth_vs.cso" />
+                        </Component>
+                        <Component Id="cmpB63D4F9FFAA086E93963F30451181673" Guid="*">
+                            <File Id="fil21C35B2A8BE94750B8888FE596C2E4E5" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_background_pattern_fill_ps.cso" />
+                        </Component>
+                        <Component Id="cmpF9E309400A62F702A0E3F983FF5E9106" Guid="*">
+                            <File Id="filFD25094EDC3B75ADE6346B109A413DB7" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_background_pattern_fill_vs.cso" />
+                        </Component>
+                        <Component Id="cmpCE17F34E50E853D9D9A9CC90B60230C3" Guid="*">
+                            <File Id="fil5BCA85FA2DBF0933FDC1CEB875464524" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_background_solid_fill_ps.cso" />
+                        </Component>
+                        <Component Id="cmp7F31C372C1468BDA2296A1E4FCBED7C1" Guid="*">
+                            <File Id="fil5951FB106B2796C66DB70B54F300D72A" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_background_solid_fill_vs.cso" />
+                        </Component>
+                        <Component Id="cmp842101CC72DFE36B6CD6803EC0FDC8FD" Guid="*">
+                            <File Id="fil80D848FA0C71CDF455949589BEA5A570" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_circle_ps.cso" />
+                        </Component>
+                        <Component Id="cmp78597AD51265D9FE777206D63F54F18A" Guid="*">
+                            <File Id="fil25D1A127946D88F04A676846DC60DEAC" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_circle_vs.cso" />
+                        </Component>
+                        <Component Id="cmpE451E02CEE531F841733038FB1859EB6" Guid="*">
+                            <File Id="filE6AAFCFB68A55302636CF3B87D06352C" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_dd_marker_ps.cso" />
+                        </Component>
+                        <Component Id="cmpD5ED00B1ECCDCD06A02A618EAF1A4643" Guid="*">
+                            <File Id="filC35B4FA2424DDCF68E530F056503A0AF" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_dd_marker_vs.cso" />
+                        </Component>
+                        <Component Id="cmp489D426E77B25146A3F6A7F9A46F4E30" Guid="*">
+                            <File Id="filADF41C2223760E1FBAEE3E3B6EF146DF" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_dd_outline_ps.cso" />
+                        </Component>
+                        <Component Id="cmp66D6BBAFA8842933730C6FEBFB60CD02" Guid="*">
+                            <File Id="fil8DCC3C08523036722170DA4D5C3EBB28" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_dd_outline_vs.cso" />
+                        </Component>
+                        <Component Id="cmp09E49020754A6CF34BA198905DD62452" Guid="*">
+                            <File Id="filFF8BB4827ED6664F8C8C23EB25365D28" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_dd_pattern_fill_ps.cso" />
+                        </Component>
+                        <Component Id="cmpF8DD398288A1A179223BDFD7E6209BEE" Guid="*">
+                            <File Id="fil3C7414CF29EE941244858084911B8A7A" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_dd_pattern_fill_vs.cso" />
+                        </Component>
+                        <Component Id="cmp32508CAF18469F2FA68416780FC3A387" Guid="*">
+                            <File Id="fil038398688CA9079E10436BE6B114F99E" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_dd_pattern_line_ps.cso" />
+                        </Component>
+                        <Component Id="cmp8EE2DDBDF68C8D10C8AEEF974DE46727" Guid="*">
+                            <File Id="fil6EA61CB30AD1393F1D8846E7AC570F22" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_dd_pattern_line_vs.cso" />
+                        </Component>
+                        <Component Id="cmpE9E388C41D12631E0D2D33A2B3635694" Guid="*">
+                            <File Id="fil878C2B3A08256B1BFF946F7D9D1094E1" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_dd_sdf_ps.cso" />
+                        </Component>
+                        <Component Id="cmp7FE0EC690BB4A595109818A9DAEDC55F" Guid="*">
+                            <File Id="fil9307862B9E141FD21324C82F6DD3B99F" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_dd_sdf_vs.cso" />
+                        </Component>
+                        <Component Id="cmp8C28613FF87775A4DD80858AA6732E8D" Guid="*">
+                            <File Id="fil14CC0F7ED4336EFCFC1CD80EB6ACAEE9" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_dd_solid_fill_ps.cso" />
+                        </Component>
+                        <Component Id="cmp3FF806002A4EE39E04B3A66A64B23F90" Guid="*">
+                            <File Id="fil82BF5BDE999A76C5E6FC3D946F4FE83E" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_dd_solid_fill_vs.cso" />
+                        </Component>
+                        <Component Id="cmp1728B9333527E30D79AB4F7E0E3F6CB1" Guid="*">
+                            <File Id="filF8B2F5F21A92589D25350F4A793B010B" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_dd_solid_line_ps.cso" />
+                        </Component>
+                        <Component Id="cmp56A24CED9A4AD8E0A4A5CE760B219A9A" Guid="*">
+                            <File Id="fil9F3F62245044399CD729BF1CD07807B0" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_dd_solid_line_vs.cso" />
+                        </Component>
+                        <Component Id="cmpBC0C12921BEBD8A188F2514C9BEAAB56" Guid="*">
+                            <File Id="filE5CA663EB4B6ECA178D463CC7C173095" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_fill_ps.cso" />
+                        </Component>
+                        <Component Id="cmpB3FD8DCEBD75B6C1DD40A0759A5E3984" Guid="*">
+                            <File Id="fil2DFCCBABB45960982C2CB62FD3F3BF8E" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_fill_vs.cso" />
+                        </Component>
+                        <Component Id="cmp4BE427CAD4476939AE6FD57DA954F33E" Guid="*">
+                            <File Id="fil2C871195DCE163958A44CD713DC82192" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_line_ps.cso" />
+                        </Component>
+                        <Component Id="cmpD87D3103E93690F8C388E2C3D6ACB758" Guid="*">
+                            <File Id="fil02B4C807DF05D85C1BC7C3265A5C42B8" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_line_vs.cso" />
+                        </Component>
+                        <Component Id="cmp34B4089F9008307AF06A00B305AE0AEA" Guid="*">
+                            <File Id="fil71D7696866E7C9F571DC8B4DE588F688" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_marker_ps.cso" />
+                        </Component>
+                        <Component Id="cmp8763228C7652498DDBF3EE3558DD9267" Guid="*">
+                            <File Id="fil562AD94801CCA21D7A21E72F2CA557AB" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_marker_vs.cso" />
+                        </Component>
+                        <Component Id="cmpFC7475EE824F3F6E69B5AFB446F4AB89" Guid="*">
+                            <File Id="fil622F763D90F1F065EA9988DF4C19E383" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_outline_ps.cso" />
+                        </Component>
+                        <Component Id="cmpB293E9A9443AF2F9C7189CBF2580FC82" Guid="*">
+                            <File Id="fil995A408C08FD7F1A99557F5D275D5D49" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_outline_vs.cso" />
+                        </Component>
+                        <Component Id="cmp582C6FABFDB34EC39295D442E4397606" Guid="*">
+                            <File Id="fil0F7393CBF21FB6EC4339802B0B938464" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_pattern_fill_ps.cso" />
+                        </Component>
+                        <Component Id="cmp90F18D5EDD68170A07CE0B68E276C5E2" Guid="*">
+                            <File Id="fil358AE13C53C9735C2E7E22C59D2BAEEF" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_pattern_fill_vs.cso" />
+                        </Component>
+                        <Component Id="cmp5D1667125A1BC0703873FBA10AD69CA5" Guid="*">
+                            <File Id="fil1A3A4EB1CCBCE9EAFAB44CB6770241B0" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_pattern_line_ps.cso" />
+                        </Component>
+                        <Component Id="cmp78E73A7CFB24922C2B8ABBD393C8D5C3" Guid="*">
+                            <File Id="fil7CCB7F4727E8A6F81C78BCA469E64C8A" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_pattern_line_vs.cso" />
+                        </Component>
+                        <Component Id="cmp77224A847C4A01C7EAF5D0CCD1F203A4" Guid="*">
+                            <File Id="fil1BEAC84B39ED5E0EB60CD5CB0B36CE97" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_render_target_ps.cso" />
+                        </Component>
+                        <Component Id="cmp95421C4F2BA4C08EA7F275606468D1B6" Guid="*">
+                            <File Id="fil64F1DAB30D979E716D7E599CDF92742C" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_render_target_vs.cso" />
+                        </Component>
+                        <Component Id="cmpA0FAEE0862C3B206D4E2C86F835C3953" Guid="*">
+                            <File Id="fil90CCEB1C603DC642B743128A99349D7B" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_sdf_ps.cso" />
+                        </Component>
+                        <Component Id="cmp36A9B0A84876BEFA9CEC304E0CA19AF1" Guid="*">
+                            <File Id="fil52E08BF6296A5829C9BC5B69CBA0BC9D" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_sdf_vs.cso" />
+                        </Component>
+                        <Component Id="cmp8B0458199F4AA112A0863EE9DD2932EE" Guid="*">
+                            <File Id="fil9CED8775134131284D96D91DD5BBCF17" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_stencil_ps.cso" />
+                        </Component>
+                        <Component Id="cmpBEE10BF724137CEDB47C476BD7F6E717" Guid="*">
+                            <File Id="fil303D14421A5BEC8F95E56D6513D844A5" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_stencil_vs.cso" />
+                        </Component>
+                        <Component Id="cmp43526246FE9CC24B0F0A4EC76D995996" Guid="*">
+                            <File Id="fil44B3517227A909CF29794457BB2C4526" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_tile_info_ps.cso" />
+                        </Component>
+                        <Component Id="cmp678765409D0B4FA3086B6B1616D68C11" Guid="*">
+                            <File Id="filF712EA61ACDE59A66E97CA617EA351E0" KeyPath="yes" Source="$(var.ArcGis)\resources\shaders\vector_tiles_tile_info_vs.cso" />
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="ArcGisComponents">
+            <ComponentRef Id="cmp38CCDE67869885436C69B163EDADE8D6" />
+            <ComponentRef Id="cmp4F67DEC95D132BD161E280B5CD98F8AF" />
+            <ComponentRef Id="cmpF96EC9B6F8619CEAE9915550EDCBDA1F" />
+            <ComponentRef Id="cmp17A7D933E68ABE73760CDA707F06D62C" />
+            <ComponentRef Id="cmp543762F856F88AE465E3DEED1B2A0487" />
+            <ComponentRef Id="cmpBC25F64010930D1F60186423CBCA0D00" />
+            <ComponentRef Id="cmpD0E9596C3AA6B0D728490DD378F35992" />
+            <ComponentRef Id="cmp76E0D868AA5517C4239F6AD81410A581" />
+            <ComponentRef Id="cmp1AE06CBD8995E80DE68856D0571CC9A3" />
+            <ComponentRef Id="cmp1DDF9798209BD616CA566B1D1696E2C6" />
+            <ComponentRef Id="cmp38E4E4F26996FA7A58EEC535EFC1D557" />
+            <ComponentRef Id="cmpE16004BF129CD19B169745F931512EB6" />
+            <ComponentRef Id="cmp7E16A8D58A2061B56349F21DC128CF74" />
+            <ComponentRef Id="cmp69BAAD1510537129C0E56749543E91A5" />
+            <ComponentRef Id="cmpAC003E3985087A52421919C6DD135024" />
+            <ComponentRef Id="cmp76991A7AC8DFB1ACC8A6EED86AEB1D12" />
+            <ComponentRef Id="cmp09C8E1B2873287A6BDB7A0B00D55E906" />
+            <ComponentRef Id="cmp9712A31A0E8EAF06123D6B368B2B3621" />
+            <ComponentRef Id="cmp0FB33AF83604C393D10CE1027C3960FA" />
+            <ComponentRef Id="cmp7FFE142473BBCABDB07BBD130F30E710" />
+            <ComponentRef Id="cmpD820F7B48900920F2DB80ABA1E9D3D4E" />
+            <ComponentRef Id="cmp77193C4F2F8E5DD36CAF78B693B8D549" />
+            <ComponentRef Id="cmp573AC34FECAE613568CA21B4ECC3AD69" />
+            <ComponentRef Id="cmp6D103AED2A8AE811B938203E34EEEF0E" />
+            <ComponentRef Id="cmp47D03B65795A6AEF357AD33102BEC7C7" />
+            <ComponentRef Id="cmp81F6C338A7EFD9E6CE3D40F1CCD7D6F9" />
+            <ComponentRef Id="cmpDDC42C543A09F6E003FEBEFDDF4930A8" />
+            <ComponentRef Id="cmpAECFE07DF44DF60CF89042755AB64C85" />
+            <ComponentRef Id="cmp572734B67BD752AA335DD26823D8F00B" />
+            <ComponentRef Id="cmp327E989EC6817DFE124C8F95A02CC4ED" />
+            <ComponentRef Id="cmp82CA66055B4561B2F537EB62A8761C03" />
+            <ComponentRef Id="cmp79443DF2F28C829D5D96F725B573BF4C" />
+            <ComponentRef Id="cmp88E51407FEACBBF1F1E19E08AC544091" />
+            <ComponentRef Id="cmp13A130D88E7199C956ADBFD4983537EA" />
+            <ComponentRef Id="cmpC21B1D1A77AEECCD0685EBAC650CF467" />
+            <ComponentRef Id="cmpAED35533847C79581997B0B50E2A0453" />
+            <ComponentRef Id="cmp268E82A67D94591665DA2525C512FC18" />
+            <ComponentRef Id="cmp1B9BAC026B282D6F1627DAC44CA915B9" />
+            <ComponentRef Id="cmpA6D832F5F37DA6D12FC77F197478E436" />
+            <ComponentRef Id="cmp6DCC3FAA32B05D71361794EDC9D16B83" />
+            <ComponentRef Id="cmpD8500C6070D5274863CB2FE2AC16E6FB" />
+            <ComponentRef Id="cmp36E9E961634A314BAEE4475F69F8B5C2" />
+            <ComponentRef Id="cmpCAD532231A7F17F696731E169CE64909" />
+            <ComponentRef Id="cmpDF541E0096F046617C6DE56F553497CB" />
+            <ComponentRef Id="cmpAFF60912019D5ADA49DB4A7C015B503A" />
+            <ComponentRef Id="cmp127D428B86716613F92182EC3FD59A4E" />
+            <ComponentRef Id="cmp724302767AB8571C4416F1DB99775E4D" />
+            <ComponentRef Id="cmp1B69FAF845DB5FFF20DB542068DDF3FE" />
+            <ComponentRef Id="cmp7C5DCA7D56EEEADCF4EB437768623ABC" />
+            <ComponentRef Id="cmp87698C6CD516A269E169BA3FABDD4D02" />
+            <ComponentRef Id="cmp39903CEA8E1910168D3E3DC1B0A4C84D" />
+            <ComponentRef Id="cmp1412403AA5720823339ABEC2F882A78E" />
+            <ComponentRef Id="cmp9E4DBB17C9C2EA37029D6431D57BF8F4" />
+            <ComponentRef Id="cmp1548B0CF7438AEE2181AA03F41B54207" />
+            <ComponentRef Id="cmp7AFFBB1EB5F48A8C76BD42C7B31571E3" />
+            <ComponentRef Id="cmp4BD3821AF57878552A82C0CB8F236563" />
+            <ComponentRef Id="cmpAB68539E8187D288355E0B9D5FF75A8D" />
+            <ComponentRef Id="cmpF695E04DEAF67C84772ED7EA3CCB51DA" />
+            <ComponentRef Id="cmp0725598365E4A93597FBF713924EC8EC" />
+            <ComponentRef Id="cmp9FD354442E7DCC152A44E565C9BBF581" />
+            <ComponentRef Id="cmp3F5173637693AA6E639B2FD2C04F4096" />
+            <ComponentRef Id="cmpA854B8014CC615E11A9060A953122851" />
+            <ComponentRef Id="cmp6631184F7615EE96363B1EDA0BC336FE" />
+            <ComponentRef Id="cmp79824262E802E130A05A47541EE3ED11" />
+            <ComponentRef Id="cmp21379CD569F5D912A62AE8A90D06DF20" />
+            <ComponentRef Id="cmpF8153EF8C4B6B458E125B0FE0EF3A78D" />
+            <ComponentRef Id="cmp1F572E86B4AE7265EAF8484E073DA8B8" />
+            <ComponentRef Id="cmpC792473468617D9B398B8FD4254F813F" />
+            <ComponentRef Id="cmpF3DF5B265F417F72481CAEFF64FD3CBD" />
+            <ComponentRef Id="cmp88E13325251FB168E6063DD6283666CD" />
+            <ComponentRef Id="cmp1EF887BC29EB63E010BC8B9E3D194AAA" />
+            <ComponentRef Id="cmpA8153EAA60711F508F7C192463090AE6" />
+            <ComponentRef Id="cmp94B6D085700F0F02F6A9FA4F65C05C5C" />
+            <ComponentRef Id="cmpBF35B236B5604B9A1F3E0A3B64409B06" />
+            <ComponentRef Id="cmpFE28382D5A4F49D3111D4076B1B72904" />
+            <ComponentRef Id="cmp2B0BC416482F07FD44F684139CA28B81" />
+            <ComponentRef Id="cmp2E9C5D8A0EA2BCDB4D248A19EA372C44" />
+            <ComponentRef Id="cmpBB9F21700B9177115D9AE0A338160B93" />
+            <ComponentRef Id="cmp707E5C6BBAF4482F92163A9E6FAC3ADE" />
+            <ComponentRef Id="cmp3C3BB8D21373D21E8A18C87DFCCF2AF8" />
+            <ComponentRef Id="cmp82536122F97F3AE78390808642E3AC6C" />
+            <ComponentRef Id="cmp097A533A82AD8A8D6B926E4F3BFB966D" />
+            <ComponentRef Id="cmpC3FB611F9E51377F0847069F7FC14F5F" />
+            <ComponentRef Id="cmp2D7B6C4B6B77DE1F1E13518804AFE19B" />
+            <ComponentRef Id="cmp57335C9D5755E899D22EC76EC83173B8" />
+            <ComponentRef Id="cmp41D6C12FFD5AD177F95C9065FF8FE94E" />
+            <ComponentRef Id="cmpB3369831AB7315A188B1A8C660A53586" />
+            <ComponentRef Id="cmp1BA9D1A0E2E192605CFA41EE0365FF0C" />
+            <ComponentRef Id="cmpFD72A8B47A282E6044FCA8C838CE77EF" />
+            <ComponentRef Id="cmp639097A148563C3942B3D1F6470E095C" />
+            <ComponentRef Id="cmpA8AB9D1F7166F14175092C8254A9FA68" />
+            <ComponentRef Id="cmp9771F08A4FBD30F3D6A3E580DD4BABAB" />
+            <ComponentRef Id="cmp4575E275946D3E9994BA00DDBDF7BBCE" />
+            <ComponentRef Id="cmp8BBECE0F286B58D96DC6D9991EFC8AA6" />
+            <ComponentRef Id="cmp444AEF5C894F80E0DF0BB3B335943671" />
+            <ComponentRef Id="cmp8CEEE72ADC20E37EB6CAD73E0745FDA2" />
+            <ComponentRef Id="cmpA3B4CA664A86C5211FCEA5FB325DC1A9" />
+            <ComponentRef Id="cmpAA926EB7816A074C50EB13FE412F360B" />
+            <ComponentRef Id="cmp7F6028592EDEE2E57436DE9E35EED665" />
+            <ComponentRef Id="cmpCE8CE130404EE95165D2118D0F325297" />
+            <ComponentRef Id="cmpE826D3D6E6539A6C1777AB6269E12136" />
+            <ComponentRef Id="cmpCD25C7974F53465727D38E93546798A6" />
+            <ComponentRef Id="cmp7A1DC1395EA72E29F985F653C8AD2C6C" />
+            <ComponentRef Id="cmp487A6D1DD903FCC1EAB07180CA5932B1" />
+            <ComponentRef Id="cmp6D46B869E772B2E00EEE1E7CF17E7885" />
+            <ComponentRef Id="cmpBE2A6EAB30B9D77B8B0A982954576BBC" />
+            <ComponentRef Id="cmp3499A9F98C3AE915A02C00DA6107B055" />
+            <ComponentRef Id="cmpD27655C5058916F23CD509FC2D537F02" />
+            <ComponentRef Id="cmp15139192FDC7AF134AD08AE3C1D5FF90" />
+            <ComponentRef Id="cmp74C323EABCEC46964C2CDC2B4E2C2163" />
+            <ComponentRef Id="cmp234F418AF52AC907CFCAF7EEC262FB94" />
+            <ComponentRef Id="cmp3463CF9565D85609A54E64A8BD869DE2" />
+            <ComponentRef Id="cmp52A1609D085095F1526ABEE1894574E4" />
+            <ComponentRef Id="cmpD83CC747B1D0C9B5778BA9688B0744FE" />
+            <ComponentRef Id="cmpBEF21035A81335D9C7AC7918C05B8521" />
+            <ComponentRef Id="cmpA1605095B6CB9128DB1B9635F72F1F96" />
+            <ComponentRef Id="cmp95946F71326575BEAF0E2FB8CCC59EFE" />
+            <ComponentRef Id="cmpC86886413F928C40171E9B46D1F3F281" />
+            <ComponentRef Id="cmp44DBF728DCF331CF95070C33C5B34A04" />
+            <ComponentRef Id="cmpEBFC2F6F1D158556EB5F52A4B444976E" />
+            <ComponentRef Id="cmpB75EF2EB849D62845C3291DDB7BA152E" />
+            <ComponentRef Id="cmpCF1617FB5B585107A78A46EDC8A7D51A" />
+            <ComponentRef Id="cmp594C037D8F3AB3044E102E31B9842E51" />
+            <ComponentRef Id="cmp3392EAB723CE2F74EA178AB11A41BC96" />
+            <ComponentRef Id="cmpEC18511659F51D780C90271C652E9D8E" />
+            <ComponentRef Id="cmpEB99ED69DA1473BCC7CA4A4FCE98013B" />
+            <ComponentRef Id="cmp80E055463793151454D7D4A4E5088BE7" />
+            <ComponentRef Id="cmp218C78CA3357F2A2A84DA888CF6D177F" />
+            <ComponentRef Id="cmp09E7FB0370F60022C32C64E62615FD12" />
+            <ComponentRef Id="cmpCBD3CA16A1234FD5EF0E07ABB13AD63D" />
+            <ComponentRef Id="cmpB63D4F9FFAA086E93963F30451181673" />
+            <ComponentRef Id="cmpF9E309400A62F702A0E3F983FF5E9106" />
+            <ComponentRef Id="cmpCE17F34E50E853D9D9A9CC90B60230C3" />
+            <ComponentRef Id="cmp7F31C372C1468BDA2296A1E4FCBED7C1" />
+            <ComponentRef Id="cmp842101CC72DFE36B6CD6803EC0FDC8FD" />
+            <ComponentRef Id="cmp78597AD51265D9FE777206D63F54F18A" />
+            <ComponentRef Id="cmpE451E02CEE531F841733038FB1859EB6" />
+            <ComponentRef Id="cmpD5ED00B1ECCDCD06A02A618EAF1A4643" />
+            <ComponentRef Id="cmp489D426E77B25146A3F6A7F9A46F4E30" />
+            <ComponentRef Id="cmp66D6BBAFA8842933730C6FEBFB60CD02" />
+            <ComponentRef Id="cmp09E49020754A6CF34BA198905DD62452" />
+            <ComponentRef Id="cmpF8DD398288A1A179223BDFD7E6209BEE" />
+            <ComponentRef Id="cmp32508CAF18469F2FA68416780FC3A387" />
+            <ComponentRef Id="cmp8EE2DDBDF68C8D10C8AEEF974DE46727" />
+            <ComponentRef Id="cmpE9E388C41D12631E0D2D33A2B3635694" />
+            <ComponentRef Id="cmp7FE0EC690BB4A595109818A9DAEDC55F" />
+            <ComponentRef Id="cmp8C28613FF87775A4DD80858AA6732E8D" />
+            <ComponentRef Id="cmp3FF806002A4EE39E04B3A66A64B23F90" />
+            <ComponentRef Id="cmp1728B9333527E30D79AB4F7E0E3F6CB1" />
+            <ComponentRef Id="cmp56A24CED9A4AD8E0A4A5CE760B219A9A" />
+            <ComponentRef Id="cmpBC0C12921BEBD8A188F2514C9BEAAB56" />
+            <ComponentRef Id="cmpB3FD8DCEBD75B6C1DD40A0759A5E3984" />
+            <ComponentRef Id="cmp4BE427CAD4476939AE6FD57DA954F33E" />
+            <ComponentRef Id="cmpD87D3103E93690F8C388E2C3D6ACB758" />
+            <ComponentRef Id="cmp34B4089F9008307AF06A00B305AE0AEA" />
+            <ComponentRef Id="cmp8763228C7652498DDBF3EE3558DD9267" />
+            <ComponentRef Id="cmpFC7475EE824F3F6E69B5AFB446F4AB89" />
+            <ComponentRef Id="cmpB293E9A9443AF2F9C7189CBF2580FC82" />
+            <ComponentRef Id="cmp582C6FABFDB34EC39295D442E4397606" />
+            <ComponentRef Id="cmp90F18D5EDD68170A07CE0B68E276C5E2" />
+            <ComponentRef Id="cmp5D1667125A1BC0703873FBA10AD69CA5" />
+            <ComponentRef Id="cmp78E73A7CFB24922C2B8ABBD393C8D5C3" />
+            <ComponentRef Id="cmp77224A847C4A01C7EAF5D0CCD1F203A4" />
+            <ComponentRef Id="cmp95421C4F2BA4C08EA7F275606468D1B6" />
+            <ComponentRef Id="cmpA0FAEE0862C3B206D4E2C86F835C3953" />
+            <ComponentRef Id="cmp36A9B0A84876BEFA9CEC304E0CA19AF1" />
+            <ComponentRef Id="cmp8B0458199F4AA112A0863EE9DD2932EE" />
+            <ComponentRef Id="cmpBEE10BF724137CEDB47C476BD7F6E717" />
+            <ComponentRef Id="cmp43526246FE9CC24B0F0A4EC76D995996" />
+            <ComponentRef Id="cmp678765409D0B4FA3086B6B1616D68C11" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>
